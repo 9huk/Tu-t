@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quán Nước Tam Tuất</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background:#f8f5f0;
+    color:#333;
+}
+
+/* HEADER */
+header{
+    background:#6F4E37;
+    color:white;
+    padding:20px 10%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.order-layout{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:20px;
+    align-items:start;
+}
+
+.order-box{
+    background:#fffaf5;
+    border:1px solid #ecd8c7;
+    padding:20px;
+    border-radius:10px;
+}
+
+.order-box ul{
+    padding-left:20px;
+    line-height:1.8;
+}
+
+.order-form{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.order-form .btn{
+    border:none;
+    cursor:pointer;
+    width:fit-content;
+}
+
+/* HERO */
+.hero{
+    height:80vh;
+    background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
+    url('https://images.unsplash.com/photo-1509042239860-f550ce710b93');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+}
+
+.hero h1{font-size:55px;}
+.hero p{font-size:20px;margin:15px 0;}
+
+.btn{
+    background:#4CAF50;
+    color:white;
+    padding:12px 25px;
+    border-radius:5px;
+    text-decoration:none;
+}
+
+/* SECTION */
+section{
+    padding:70px 10%;
+    margin:20px 0;
+    background:#fff;
+    border-radius:12px;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:30px;
+    color:#6F4E37;
+}
+
+/* ABOUT */
+.about{
+    text-align:center;
+    line-height:1.8;
+}
+
+/* ===== MENU ===== */
+.menu-wrapper{
+    position:relative;
+}
+
+.menu-controls{
+    position:absolute;
+    top:50%;
+    left:0;
+    right:0;
+    display:flex;
+    justify-content:space-between;
+    transform:translateY(-50%);
+    pointer-events:none;
+}
+
+.arrow-btn{
+    pointer-events:auto;
+    background:#6F4E37;
+    color:white;
+    border:none;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+.menu-grid{
+    display:flex;
+    gap:20px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+}
+
+.menu-grid::-webkit-scrollbar{display:none;}
+
+.card{
+    flex:0 0 250px;
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+    text-align:center;
+    scroll-snap-align:center;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card img{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.option-row{
+    display:flex;
+    gap:10px;
+    margin-top:10px;
+    justify-content:center;
+}
+
+.option-group{
+    flex:1;
+    text-align:left;
+}
+
+.option-group label{
+    display:block;
+    font-size:12px;
+    color:#6F4E37;
+    margin-bottom:4px;
+}
+
+.option-select{
+    width:100%;
+    padding:8px;
+    border:1px solid #ddd;
+    border-radius:6px;
+    font-size:13px;
+}
+
+/* ===== KHUYẾN MÃI ===== */
+#promotion{
+    background: linear-gradient(135deg,#fff7ed,#ffffff);
+}
+
+.promo-card{
+    position:relative;
+    overflow:hidden;
+    padding:0;
+}
+
+.promo-card img{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+    border-radius:10px 10px 0 0;
+}
+
+.badge{
+    position:absolute;
+    top:10px;
+    left:10px;
+    background:#ff4d4d;
+    color:white;
+    padding:5px 10px;
+    font-size:12px;
+    border-radius:20px;
+    font-weight:bold;
+}
+
+.promo-card:hover{
+    transform:translateY(-10px) scale(1.03);
+    box-shadow:0 12px 25px rgba(0,0,0,.25);
+}
+
+.promo-card h3,
+.promo-card p{
+    padding:0 12px;
+}
+
+.promo-card h3{
+    color:#6F4E37;
+    margin-top:10px;
+}
+
+/* GALLERY */
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:15px;
+}
+
+.gallery img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+/* FORM */
+form{
+    max-width:600px;
+    margin:auto;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+input,textarea,select{
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+/* FOOTER */
+footer{
+    background:#6F4E37;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+@media(max-width:768px){
+    .hero h1{font-size:36px;}
+    nav{display:none;}
+    .order-layout{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">TAM TUẤT</div>
+    <nav>
+        <a href="#about">Giới thiệu</a>
+        <a href="#menu">Menu</a>
+        <a href="#order">Đặt món</a>
+        <a href="#promotion">Khuyến mãi</a>
+        <a href="#gallery">Hình ảnh</a>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div>
+        <h1>Quán Nước Tam Tuất</h1>
+        <p>Không gian thư giãn - Đồ uống chất lượng</p>
+        <a class="btn" href="#menu">Khám phá ngay</a>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<h2>Giới Thiệu</h2>
+<div class="about">
+<p>
+Chào mừng bạn đến với <b>Quán Nước Tam Tuất</b> – nơi thư giãn và kết nối cảm xúc qua từng ly nước.
+Chúng tôi mang đến không gian ấm áp cùng đồ uống chất lượng, giúp bạn tận hưởng từng khoảnh khắc.
+<b>Tam Tuất – nơi hương vị và cảm xúc gặp nhau.</b>
+</p>
+</div>
+</section>
+
+<!-- MENU (ĐÃ THÊM LẠI) -->
+<section id="menu">
+<h2>Menu Nổi Bật</h2>
+
+<div class="menu-wrapper">
+    <div class="menu-controls">
+        <button class="arrow-btn" onclick="scrollMenu(-1)">«</button>
+        <button class="arrow-btn" onclick="scrollMenu(1)">»</button>
+    </div>
+
+    <div class="menu-grid" id="menuGrid">
+
+        <div class="card" data-drink="Cà Phê Đen">
+            <img src="c:\Users\Admin\OneDrive\Pictures\Camera Roll\ca-phe-den-da.png" onclick="goToOrder(this)" alt="Cà Phê Đen">
+            <h3>Cà Phê Đen</h3>
+            <p>25.000đ</p>
+            <div class="option-row">
+                <div class="option-group">
+                    <label>Đá</label>
+                    <select class="option-select" data-type="ice">
+                        <option value="0%">0%</option>
+                        <option value="25%">25%</option>
+                        <option value="50%" selected>50%</option>
+                        <option value="75%">75%</option>
+                        <option value="100%">100%</option>
+                    </select>
+                </div>
+                <div class="option-group">
+                    <label>Đường</label>
+                    <select class="option-select" data-type="sugar">
+                        <option value="0%">0%</option>
+                        <option value="25%">25%</option>
+                        <option value="50%" selected>50%</option>
+                        <option value="75%">75%</option>
+                        <option value="100%">100%</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-drink="Cà Phê Sữa">
+            <img src="c:\Users\Admin\OneDrive\Pictures\Camera Roll\OIP.jpg" onclick="goToOrder(this)" alt="Cà Phê Sữa">
+            <h3>Cà Phê Sữa</h3>
+            <p>35.000đ</p>
+            <div class="option-row">
+                <div class="option-group">
+                    <label>Đá</label>
+                    <select class="option-select" data-type="ice">
+                        <option value="0%">0%</option>
+                        <option value="25%">25%</option>
+                        <option value="50%" selected>50%</option>
+                        <option value="75%">75%</option>
+                        <option value="100%">100%</option>
+                    </select>
+                </div>
+                <div class="option-group">
+                    <label>Đường</label>
+                    <select class="option-select" data-type="sugar">
+                        <option value="0%">0%</option>
+                        <option value="25%">25%</option>
+                        <option value="50%" selected>50%</option>
+                        <option value="75%">75%</option>
+                        <option value="100%">100%</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-drink="Trà Đào">
+            <img src="c:\Users\Admin\OneDrive\Pictures\Camera Roll\OIP (1).jpg" onclick="goToOrder(this)" alt="Trà Đào">
+            <h3>Trà Đào</h3>
+            <p>40.000đ</p>
+            <div class="option-row">
+                <div class="option-group">
+                    <label>Đá</label>
+                    <select class="option-select" data-type="ice">
+                        <option value="0%">0%</option>
+                        <option value="25%">25%</option>
+                        <option value="50%" selected>50%</option>
+                        <option value="75%">75%</option>
+                        <option value="100%">100%</option>
+                    </select>
+                </div>
+                <div class="option-group">
+                    <label>Đường</label>
+                    <select class="option-select" data-type="sugar">
+                        <option value="0%">0%</option>
+                        <option value="25%">25%</option>
+                        <option value="50%" selected>50%</option>
+                        <option value="75%">75%</option>
+                        <option value="100%">100%</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-drink="Trà Đào">
+            <img src="c:\Users\Admin\OneDrive\Pictures\Camera Roll\maxresdefault.jpg" onclick="goToOrder(this)" alt="Trà Đào">
+            <h3>Trà Xoài</h3>
+            <p>40.000đ</p>
+            <div class="option-row">
+                <div class="option-group">
+                    <label>Đá</label>
+                    <select class="option-select" data-type="ice">
+                        <option value="0%">0%</option>
+                        <option value="25%">25%</option>
+                        <option value="50%" selected>50%</option>
+                        <option value="75%">75%</option>
+                        <option value="100%">100%</option>
+                    </select>
+                </div>
+                <div class="option-group">
+                    <label>Đường</label>
+                    <select class="option-select" data-type="sugar">
+                        <option value="0%">0%</option>
+                        <option value="25%">25%</option>
+                        <option value="50%" selected>50%</option>
+                        <option value="75%">75%</option>
+                        <option value="100%">100%</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-drink="Trà Đào">
+            <img src="c:\Users\Admin\OneDrive\Pictures\Camera Roll\2-cach-lam-tra-nhan-tuoi-thanh-mat-don-gian-tai-nha_c63a4923.png" onclick="goToOrder(this)" alt="Trà Đào">
+            <h3>Trà Nhã</h3>
+            <p>40.000đ</p>
+            <div class="option-row">
+                <div class="option-group">
+                    <label>Đá</label>
+                    <select class="option-select" data-type="ice">
+                        <option value="0%">0%</option>
+                        <option value="25%">25%</option>
+                        <option value="50%" selected>50%</option>
+                        <option value="75%">75%</option>
+                        <option value="100%">100%</option>
+                    </select>
+                </div>
+                <div class="option-group">
+                    <label>Đường</label>
+                    <select class="option-select" data-type="sugar">
+                        <option value="0%">0%</option>
+                        <option value="25%">25%</option>
+                        <option value="50%" selected>50%</option>
+                        <option value="75%">75%</option>
+                        <option value="100%">100%</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-drink="Trà Đào">
+            <img src="c:\Users\Admin\OneDrive\Pictures\Camera Roll\OIP (1).jpg" onclick="goToOrder(this)" alt="Trà Đào">
+            <h3>Trà Đào</h3>
+            <p>40.000đ</p>
+            <div class="option-row">
+                <div class="option-group">
+                    <label>Đá</label>
+                    <select class="option-select" data-type="ice">
+                        <option value="0%">0%</option>
+                        <option value="25%">25%</option>
+                        <option value="50%" selected>50%</option>
+                        <option value="75%">75%</option>
+                        <option value="100%">100%</option>
+                    </select>
+                </div>
+                <div class="option-group">
+                    <label>Đường</label>
+                    <select class="option-select" data-type="sugar">
+                        <option value="0%">0%</option>
+                        <option value="25%">25%</option>
+                        <option value="50%" selected>50%</option>
+                        <option value="75%">75%</option>
+                        <option value="100%">100%</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-drink="Trà Đào">
+            <img src="c:\Users\Admin\OneDrive\Pictures\Camera Roll\OIP (1).jpg" onclick="goToOrder(this)" alt="Trà Đào">
+            <h3>Trà Đào</h3>
+            <p>40.000đ</p>
+            <div class="option-row">
+                <div class="option-group">
+                    <label>Đá</label>
+                    <select class="option-select" data-type="ice">
+                        <option value="0%">0%</option>
+                        <option value="25%">25%</option>
+                        <option value="50%" selected>50%</option>
+                        <option value="75%">75%</option>
+                        <option value="100%">100%</option>
+                    </select>
+                </div>
+                <div class="option-group">
+                    <label>Đường</label>
+                    <select class="option-select" data-type="sugar">
+                        <option value="0%">0%</option>
+                        <option value="25%">25%</option>
+                        <option value="50%" selected>50%</option>
+                        <option value="75%">75%</option>
+                        <option value="100%">100%</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-drink="Trà Đào">
+            <img src="c:\Users\Admin\OneDrive\Pictures\Camera Roll\OIP (1).jpg" onclick="goToOrder(this)" alt="Trà Đào">
+            <h3>Trà Đào</h3>
+            <p>40.000đ</p>
+            <div class="option-row">
+                <div class="option-group">
+                    <label>Đá</label>
+                    <select class="option-select" data-type="ice">
+                        <option value="0%">0%</option>
+                        <option value="25%">25%</option>
+                        <option value="50%" selected>50%</option>
+                        <option value="75%">75%</option>
+                        <option value="100%">100%</option>
+                    </select>
+                </div>
+                <div class="option-group">
+                    <label>Đường</label>
+                    <select class="option-select" data-type="sugar">
+                        <option value="0%">0%</option>
+                        <option value="25%">25%</option>
+                        <option value="50%" selected>50%</option>
+                        <option value="75%">75%</option>
+                        <option value="100%">100%</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-drink="Sinh Tố Bơ">
+            <img src="c:\Users\Admin\OneDrive\Pictures\Camera Roll\cach-lam-tra-dau-dong-du-mat-lanh-giai-nhiet-don-gian-tai-nha-202201170928357855.jpg" onclick="goToOrder(this)" alt="Sinh Tố Bơ">
+            <h3>Trà Dâu</h3>
+            <p>45.000đ</p>
+            <div class="option-row">
+                <div class="option-group">
+                    <label>Đá</label>
+                    <select class="option-select" data-type="ice">
+                        <option value="0%">0%</option>
+                        <option value="25%">25%</option>
+                        <option value="50%" selected>50%</option>
+                        <option value="75%">75%</option>
+                        <option value="100%">100%</option>
+                    </select>
+                </div>
+                <div class="option-group">
+                    <label>Đường</label>
+                    <select class="option-select" data-type="sugar">
+                        <option value="0%">0%</option>
+                        <option value="25%">25%</option>
+                        <option value="50%" selected>50%</option>
+                        <option value="75%">75%</option>
+                        <option value="100%">100%</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</section>
+
+<!-- ORDER -->
+<section id="order">
+<h2>Đặt Món</h2>
+<div class="order-layout">
+    <div class="order-box">
+        <h3>Ưu đãi khi đặt món</h3>
+        <ul>
+            <li>Giao hàng nhanh trong 30 phút</li>
+            <li>Miễn phí phí ship cho đơn từ 100.000đ</li>
+            <li>Nhận ưu đãi riêng vào ngày sinh nhật</li>
+        </ul>
+    </div>
+
+    <div class="order-box">
+        <form class="order-form" onsubmit="event.preventDefault(); alert('Đơn đặt món của bạn đã được ghi nhận!'); this.reset();">
+            <input type="text" placeholder="Họ và tên" required>
+            <input type="tel" placeholder="Số điện thoại" required>
+            <select id="drinkSelect" required>
+                <option value="">Chọn món</option>
+                <option>Cà phê đen</option>
+                <option>Cà phê sữa</option>
+                <option>Trà đào</option>
+                <option>Sinh tố bơ</option>
+            </select>
+            <select id="iceSelect" required>
+                <option value="">Chọn % đá</option>
+                <option value="0%">0%</option>
+                <option value="25%">25%</option>
+                <option value="50%">50%</option>
+                <option value="75%">75%</option>
+                <option value="100%">100%</option>
+            </select>
+            <select id="sugarSelect" required>
+                <option value="">Chọn % đường</option>
+                <option value="0%">0%</option>
+                <option value="25%">25%</option>
+                <option value="50%">50%</option>
+                <option value="75%">75%</option>
+                <option value="100%">100%</option>
+            </select>
+            <input type="number" min="1" value="1" required>
+            <textarea rows="3" placeholder="Ghi chú thêm"></textarea>
+            <button class="btn" type="submit">Đặt món ngay</button>
+        </form>
+    </div>
+</div>
+</section>
+
+<!-- PROMOTION -->
+<section id="promotion">
+<h2>Khuyến Mãi</h2>
+
+<div class="menu-grid">
+
+    <div class="card promo-card">
+        <div class="badge">HOT</div>
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
+        <h3>Giảm 20%</h3>
+        <p>Mua 2 ly vào thứ Tư</p>
+    </div>
+
+    <div class="card promo-card">
+        <div class="badge">FREE</div>
+        <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87">
+        <h3>Tặng bánh</h3>
+        <p>Đặt bàn 4 người</p>
+    </div>
+
+    <div class="card promo-card">
+        <div class="badge">COMBO</div>
+        <img src="https://images.unsplash.com/photo-1556742400-b5b7c5121f34">
+        <h3>Combo 60k</h3>
+        <p>Cà phê + trà đào</p>
+    </div>
+
+</div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+<h2>Không Gian</h2>
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24">
+<img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0">
+<img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814">
+</div>
+</section>
+
+<script>
+function scrollMenu(dir){
+    const menu = document.getElementById("menuGrid");
+    const card = menu.querySelector(".card");
+    const gap = 20;
+    menu.scrollBy({left: dir * (card.offsetWidth + gap), behavior:"smooth"});
+}
+
+function goToOrder(img){
+    const card = img.closest(".card");
+    const orderSection = document.getElementById("order");
+    if (orderSection) {
+        orderSection.scrollIntoView({behavior:"smooth", block:"start"});
+
+        if (card) {
+            const drinkName = card.getAttribute("data-drink");
+            const iceValue = card.querySelector('[data-type="ice"]').value;
+            const sugarValue = card.querySelector('[data-type="sugar"]').value;
+            const drinkSelect = document.getElementById("drinkSelect");
+            const iceSelect = document.getElementById("iceSelect");
+            const sugarSelect = document.getElementById("sugarSelect");
+
+            if (drinkSelect && drinkName) {
+                drinkSelect.value = drinkName;
+            }
+            if (iceSelect) {
+                iceSelect.value = iceValue;
+            }
+            if (sugarSelect) {
+                sugarSelect.value = sugarValue;
+            }
+        }
+
+        const firstInput = orderSection.querySelector("input, select, textarea");
+        if (firstInput) {
+            setTimeout(() => firstInput.focus(), 400);
+        }
+    }
+}
+</script>
+
+</body>
+</html>
