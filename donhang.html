@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý đơn hàng</title>
+    <link rel="stylesheet" href="../css/donhang.css">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <img src="../img/logo.png" alt="Logo">
+            <h2>Coffee Anh Ba</h2>
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="tongquan.html" class="nav-link">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Tổng quan</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="donhang.html" class="nav-link">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Đơn hàng</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="sanpham.html" class="nav-link">
+                    <i class="fa-solid fa-mug-hot"></i>
+                    <span>Sản phẩm</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="danhmuc.html" class="nav-link">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>Danh mục</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="ban.html" class="nav-link">
+                    <i class="fa-solid fa-chair"></i>
+                    <span>Bàn</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="khachhang.html" class="nav-link">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Khách hàng</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="nhanvien.html" class="nav-link">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <span>Nhân viên</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="nhacungcap.html" class="nav-link">
+                    <i class="fa-solid fa-truck"></i>
+                    <span>Nhà cung cấp</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="doanhthu.html" class="nav-link">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Doanh thu</span>
+                </a>
+            </li>
+            <li>
+                <a href="sanphambanchay.html" class="nav-link">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Sản Phẩm Bán Chạy</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="nhapkho.html" class="nav-link">
+                    <i class="fa-solid fa-box"></i>
+                    <span>Nhập Kho</span>
+                </a>
+            </li>
+            <li>
+                <a href="chiphi.html" class="nav-link">
+                    <i class="fa-solid fa-box"></i>
+                    <span>Chi Phí</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="caidat.html" class="nav-link">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Cài đặt</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="dangxuat.html" class="nav-link">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Đăng xuất</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <main class="main">
+
+        <header class="page-header">
+            <div>
+                <h1>Quản lý đơn hàng</h1>
+                <p class="page-description">Theo dõi, tìm kiếm và xử lý đơn hàng nhanh chóng với giao diện rõ ràng.</p>
+            </div>
+            <button class="btn-primary" id="openOrderModal">
+                <i class="fa-solid fa-plus"></i>
+                Tạo đơn hàng
+            </button>
+        </header>
+
+        <section class="cards order-summary">
+            <article class="card">
+                <h3>Tổng đơn hàng</h3>
+                <h2 id="totalOrdersCount">0</h2>
+            </article>
+            <article class="card">
+                <h3>Tổng doanh thu</h3>
+                <h2 id="totalRevenue">0₫</h2>
+            </article>
+            <article class="card">
+                <h3>Đang phục vụ</h3>
+                <h2 id="activeOrdersCount">0</h2>
+            </article>
+        </section>
+
+        <section class="order-controls">
+            <div class="order-search">
+                <input id="orderSearch" type="text" placeholder="Tìm theo mã đơn hoặc khách hàng...">
+                <button class="btn-primary" id="orderSearchButton">
+                    <i class="fa fa-search"></i>
+                    Tìm kiếm
+                </button>
+            </div>
+            <div class="order-filter">
+                <select id="orderStatusFilter">
+                    <option value="">Tất cả trạng thái</option>
+                    <option value="Đã thanh toán">Đã thanh toán</option>
+                    <option value="Đang phục vụ">Đang phục vụ</option>
+                    <option value="Chờ thanh toán">Chờ thanh toán</option>
+                </select>
+                <input id="orderDateFilter" type="date">
+                <button class="btn-primary" id="orderFilterButton">Lọc</button>
+                <button class="btn-secondary" id="orderResetButton">Xóa bộ lọc</button>
+            </div>
+        </section>
+
+        <section class="orders">
+
+            <h2>Danh sách đơn hàng</h2>
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>Mã đơn</th>
+
+                    <th>Khách hàng</th>
+
+                    <th>Bàn</th>
+
+                    <th>Nhân viên</th>
+
+                    <th>Tổng tiền</th>
+
+                    <th>Ngày</th>
+
+                    <th>Trạng thái</th>
+
+                    <th>Thao tác</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="orderTableBody"></tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+<div class="modal" id="orderModal" aria-hidden="true">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="orderModalTitle">Tạo đơn hàng</h2>
+            <button class="close-modal" id="closeOrderModal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <form id="orderForm" class="modal-form">
+            <div class="form-row">
+                <label for="orderCustomer">Khách hàng</label>
+                <input id="orderCustomer" name="customer" type="text" placeholder="Nguyễn Văn A" required>
+            </div>
+            <div class="form-row two-cols">
+                <div>
+                    <label for="orderTable">Bàn</label>
+                    <input id="orderTable" name="table" type="text" placeholder="B01 hoặc Mang về" required>
+                </div>
+                <div>
+                    <label for="orderStaff">Nhân viên</label>
+                    <input id="orderStaff" name="staff" type="text" placeholder="Lan" required>
+                </div>
+            </div>
+            <div class="form-row two-cols">
+                <div>
+                    <label for="orderTotal">Tổng tiền</label>
+                    <input id="orderTotal" name="total" type="number" min="0" placeholder="320000" required>
+                </div>
+                <div>
+                    <label for="orderDate">Ngày</label>
+                    <input id="orderDate" name="date" type="date" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="orderStatus">Trạng thái</label>
+                <select id="orderStatus" name="status" required>
+                    <option value="Đã thanh toán">Đã thanh toán</option>
+                    <option value="Đang phục vụ">Đang phục vụ</option>
+                    <option value="Chờ thanh toán">Chờ thanh toán</option>
+                </select>
+            </div>
+            <div class="modal-actions">
+                <button type="submit" class="btn-primary">Lưu đơn hàng</button>
+                <button type="button" class="btn-secondary" id="cancelOrderModal">Hủy</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="../js/donhang.js"></script>
+</body>
+</html>

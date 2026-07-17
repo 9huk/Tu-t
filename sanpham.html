@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sản phẩm - Quán Nước</title>
+    <link rel="stylesheet" href="../css/sanpham.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+<body>
+<div class="container">
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="../img/logo.png" alt="Logo">
+            <h2>Coffee Anh Ba</h2>
+        </div>
+        <ul>
+    <li><a href="tongquan.html" class="nav-link"><i class="fa-solid fa-house"></i><span>Tổng quan</span></a></li>
+
+    <li><a href="donhang.html" class="nav-link"><i class="fa-solid fa-cart-shopping"></i><span>Đơn hàng</span></a></li>
+
+    <li class="active">
+        <a href="sanpham.html" class="nav-link">
+            <i class="fa-solid fa-mug-hot"></i>
+            <span>Sản phẩm</span>
+        </a>
+    </li>
+
+    <li><a href="danhmuc.html" class="nav-link"><i class="fa-solid fa-layer-group"></i><span>Danh mục</span></a></li>
+
+    <li><a href="ban.html" class="nav-link"><i class="fa-solid fa-chair"></i><span>Bàn</span></a></li>
+
+    <li><a href="khachhang.html" class="nav-link"><i class="fa-solid fa-users"></i><span>Khách hàng</span></a></li>
+
+    <li><a href="nhanvien.html" class="nav-link"><i class="fa-solid fa-user-tie"></i><span>Nhân viên</span></a></li>
+
+    <li><a href="nhacungcap.html" class="nav-link"><i class="fa-solid fa-truck"></i><span>Nhà cung cấp</span></a></li>
+
+    <li><a href="doanhthu.html" class="nav-link"><i class="fa-solid fa-chart-line"></i><span>Doanh thu</span></a></li>
+
+    <li><a href="sanphambanchay.html" class="nav-link"><i class="fa-solid fa-chart-simple"></i><span>Sản phẩm bán chạy</span></a></li>
+
+    <li><a href="nhapkho.html" class="nav-link"><i class="fa-solid fa-box"></i><span>Nhập kho</span></a></li>
+
+    <li><a href="chiphi.html" class="nav-link"><i class="fa-solid fa-wallet"></i><span>Chi phí</span></a></li>
+
+    <li><a href="caidat.html" class="nav-link"><i class="fa-solid fa-gear"></i><span>Cài đặt</span></a></li>
+
+    <li><a href="dangxuat.html" class="nav-link"><i class="fa-solid fa-right-from-bracket"></i><span>Đăng xuất</span></a></li>
+</ul>
+    </aside>
+
+    <main class="main">
+        <header class="page-header">
+            <div>
+                <h1>Quản lý sản phẩm</h1>
+                <p>Thêm, sửa, xóa và theo dõi sản phẩm trong quán nước.</p>
+            </div>
+            <button class="btn-primary" id="openAddProduct"><i class="fa-solid fa-plus"></i> Thêm sản phẩm</button>
+        </header>
+
+        <section class="toolbar">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input id="searchInput" type="text" placeholder="Tìm sản phẩm, danh mục...">
+            </div>
+            <div class="filter-row">
+                <select id="categoryFilter">
+                    <option value="">Tất cả danh mục</option>
+                    <option value="Cà phê">Cà phê</option>
+                    <option value="Trà">Trà</option>
+                    <option value="Sinh tố">Sinh tố</option>
+                    <option value="Đồ ăn">Đồ ăn</option>
+                </select>
+                <button class="btn-secondary" id="resetFilters">Xóa bộ lọc</button>
+            </div>
+        </section>
+
+        <section class="inline-add-card">
+            <h2>Thêm sản phẩm nhanh</h2>
+            <div class="inline-add-grid">
+                <input id="inlineProductName" type="text" placeholder="Tên sản phẩm">
+                <select id="inlineProductCategory">
+                    <option value="Cà phê">Cà phê</option>
+                    <option value="Trà">Trà</option>
+                    <option value="Sinh tố">Sinh tố</option>
+                    <option value="Đồ ăn">Đồ ăn</option>
+                    <option value="Khác">Khác</option>
+                </select>
+                <input id="inlineProductPrice" type="number" placeholder="Giá bán" min="0">
+                <input id="inlineProductCost" type="number" placeholder="Giá vốn" min="0">
+                <input id="inlineProductStock" type="number" placeholder="Số lượng" min="0">
+                <select id="inlineProductStatus">
+                    <option value="Còn hàng">Còn hàng</option>
+                    <option value="Hết hàng">Hết hàng</option>
+                    <option value="Ngưng bán">Ngưng bán</option>
+                </select>
+            </div>
+            <button type="button" class="btn-primary" id="inlineAddButton"><i class="fa-solid fa-plus"></i> Thêm nhanh</button>
+        </section>
+
+        <section class="stats-grid">
+            <article class="stat-card">
+                <span>Tổng sản phẩm</span>
+                <strong id="totalProducts">0</strong>
+            </article>
+            <article class="stat-card">
+                <span>Kho còn</span>
+                <strong id="totalStock">0</strong>
+            </article>
+            <article class="stat-card">
+                <span>Danh mục</span>
+                <strong id="categoryCount">0</strong>
+            </article>
+            <article class="stat-card">
+                <span>Trạng thái active</span>
+                <strong id="activeCount">0</strong>
+            </article>
+        </section>
+
+        <section class="products-card">
+            <div class="products-header">
+                <h2>Danh sách sản phẩm</h2>
+                <span id="productCount">0 sản phẩm</span>
+            </div>
+            <div class="products-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tên</th>
+                            <th>Danh mục</th>
+                            <th>Giá bán</th>
+                            <th>Giá vốn</th>
+                            <th>Kho</th>
+                            <th>Trạng thái</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</div>
+
+<div class="modal" id="productModal" aria-hidden="true">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">Thêm sản phẩm</h2>
+            <button class="close-modal" id="closeModal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <form id="productForm" class="modal-form">
+            <div class="form-row">
+                <label for="productName">Tên sản phẩm</label>
+                <input id="productName" name="name" type="text" placeholder="Nhập tên sản phẩm" required>
+            </div>
+            <div class="form-row">
+                <label for="productCategory">Danh mục</label>
+                <select id="productCategory" name="category" required>
+                    <option value="Cà phê">Cà phê</option>
+                    <option value="Trà">Trà</option>
+                    <option value="Sinh tố">Sinh tố</option>
+                    <option value="Đồ ăn">Đồ ăn</option>
+                    <option value="Khác">Khác</option>
+                </select>
+            </div>
+            <div class="form-row two-cols">
+                <div>
+                    <label for="productPrice">Giá bán</label>
+                    <input id="productPrice" name="price" type="number" min="0" placeholder="35000" required>
+                </div>
+                <div>
+                    <label for="productCost">Giá vốn</label>
+                    <input id="productCost" name="cost" type="number" min="0" placeholder="20000" required>
+                </div>
+            </div>
+            <div class="form-row two-cols">
+                <div>
+                    <label for="productStock">Số lượng</label>
+                    <input id="productStock" name="stock" type="number" min="0" placeholder="150" required>
+                </div>
+                <div>
+                    <label for="productStatus">Trạng thái</label>
+                    <select id="productStatus" name="status" required>
+                        <option value="Còn hàng">Còn hàng</option>
+                        <option value="Hết hàng">Hết hàng</option>
+                        <option value="Ngưng bán">Ngưng bán</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button type="submit" class="btn-primary">Lưu sản phẩm</button>
+                <button type="button" class="btn-secondary" id="cancelModal">Huỷ</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="../js/sanpham.js"></script>
+</body>
+</html>

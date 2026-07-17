@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cài đặt - Quản lý Quán Nước</title>
+
+    <link rel="stylesheet" href="../css/caidat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+<body>
+
+<div class="container">
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="../img/logo.png" alt="Logo">
+            <h2>Coffee Anh Ba</h2>
+        </div>
+
+        <ul>
+            <li><a href="tongquan.html" class="nav-link"><i class="fa-solid fa-house"></i><span>Tổng quan</span></a></li>
+            <li><a href="donhang.html" class="nav-link"><i class="fa-solid fa-cart-shopping"></i><span>Đơn hàng</span></a></li>
+            <li><a href="sanpham.html" class="nav-link"><i class="fa-solid fa-mug-hot"></i><span>Sản phẩm</span></a></li>
+            <li><a href="danhmuc.html" class="nav-link"><i class="fa-solid fa-layer-group"></i><span>Danh mục</span></a></li>
+            <li><a href="ban.html" class="nav-link"><i class="fa-solid fa-chair"></i><span>Bàn</span></a></li>
+            <li><a href="khachhang.html" class="nav-link"><i class="fa-solid fa-users"></i><span>Khách hàng</span></a></li>
+            <li><a href="nhanvien.html" class="nav-link"><i class="fa-solid fa-user-tie"></i><span>Nhân viên</span></a></li>
+            <li><a href="nhacungcap.html" class="nav-link"><i class="fa-solid fa-truck"></i><span>Nhà cung cấp</span></a></li>
+            <li><a href="doanhthu.html" class="nav-link"><i class="fa-solid fa-chart-line"></i><span>Doanh thu</span></a></li>
+            <li><a href="sanphambanchay.html" class="nav-link"><i class="fa-solid fa-chart-line"></i><span>Sản phẩm bán chạy</span></a></li>
+            <li><a href="nhapkho.html" class="nav-link"><i class="fa-solid fa-box"></i><span>Nhập kho</span></a></li>
+            <li><a href="chiphi.html" class="nav-link"><i class="fa-solid fa-wallet"></i><span>Chi phí</span></a></li>
+            <li><a href="caidat.html" class="nav-link active"><i class="fa-solid fa-gear"></i><span>Cài đặt</span></a></li>
+            <li><a href="dangxuat.html" class="nav-link"><i class="fa-solid fa-right-from-bracket"></i><span>Đăng xuất</span></a></li>
+        </ul>
+    </aside>
+
+    <main class="main">
+        <header>
+            <div>
+                <h1>Cài đặt hệ thống</h1>
+                <p>Quản lý thông tin tài khoản và các tùy chọn cá nhân.</p>
+            </div>
+            <div class="profile">
+                <i class="fa-solid fa-user"></i>
+                <span id="userName">Xin chào</span>
+            </div>
+        </header>
+
+        <section class="settings-grid">
+            <article class="settings-card">
+                <h2>Thông tin tài khoản</h2>
+                <p>Chỉnh sửa tên, email và tên đăng nhập của bạn.</p>
+                <form id="accountForm" class="settings-form">
+                    <label for="fullName">Họ và tên</label>
+                    <input id="fullName" name="fullName" type="text" placeholder="Họ và tên">
+
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" placeholder="Email">
+
+                    <label for="username">Tên đăng nhập</label>
+                    <input id="username" name="username" type="text" placeholder="Tên đăng nhập">
+
+                    <button type="submit">Lưu thông tin</button>
+                </form>
+            </article>
+
+            <article class="settings-card">
+                <h2>Bảo mật</h2>
+                <p>Thay đổi mật khẩu để bảo vệ tài khoản.</p>
+                <form id="securityForm" class="settings-form">
+                    <label for="currentPassword">Mật khẩu hiện tại</label>
+                    <input id="currentPassword" name="currentPassword" type="password" placeholder="Mật khẩu hiện tại">
+
+                    <label for="newPassword">Mật khẩu mới</label>
+                    <input id="newPassword" name="newPassword" type="password" placeholder="Mật khẩu mới">
+
+                    <label for="confirmPassword">Xác nhận mật khẩu mới</label>
+                    <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Nhập lại mật khẩu mới">
+
+                    <button type="submit">Cập nhật mật khẩu</button>
+                </form>
+            </article>
+        </section>
+
+        <section class="settings-card wide-card">
+            <h2>Tùy chọn hệ thống</h2>
+            <p>Cài đặt chế độ và thông báo theo nhu cầu.</p>
+            <div class="preference-row">
+                <div>
+                    <label for="themeSelect">Giao diện</label>
+                    <select id="themeSelect">
+                        <option value="auto">Tự động</option>
+                        <option value="light">Sáng</option>
+                        <option value="dark">Tối</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="languageSelect">Ngôn ngữ</label>
+                    <select id="languageSelect">
+                        <option value="vi">Tiếng Việt</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Thông báo</label>
+                    <div class="switch-row">
+                        <label class="switch">
+                            <input id="notificationsToggle" type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                        <span>Bật thông báo</span>
+                    </div>
+                </div>
+            </div>
+            <div class="preference-actions">
+                <button id="savePreferences">Lưu tùy chọn</button>
+                <span class="info-text">Lưu các cài đặt này vào trình duyệt của bạn.</span>
+            </div>
+            <div class="settings-message" id="settingsMessage"></div>
+        </section>
+    </main>
+</div>
+
+<script>
+    function getCurrentUser() {
+        var user = localStorage.getItem('currentUser');
+        return user ? JSON.parse(user) : null;
+    }
+
+    function getUserSettings() {
+        var settings = localStorage.getItem('userSettings');
+        return settings ? JSON.parse(settings) : { theme: 'auto', language: 'vi', notifications: true };
+    }
+
+    function saveUserSettings(settings) {
+        localStorage.setItem('userSettings', JSON.stringify(settings));
+    }
+
+    function showMessage(message, isError) {
+        var messageBox = document.getElementById('settingsMessage');
+        messageBox.textContent = message;
+        messageBox.className = isError ? 'settings-message error' : 'settings-message success';
+    }
+
+    window.addEventListener('DOMContentLoaded', function () {
+        var user = getCurrentUser();
+        var userName = document.getElementById('userName');
+        var fullNameInput = document.getElementById('fullName');
+        var emailInput = document.getElementById('email');
+        var usernameInput = document.getElementById('username');
+        var settings = getUserSettings();
+
+        if (user) {
+            userName.textContent = user.fullName || user.username;
+            fullNameInput.value = user.fullName || '';
+            emailInput.value = user.email || '';
+            usernameInput.value = user.username || '';
+        }
+
+        document.getElementById('themeSelect').value = settings.theme;
+        document.getElementById('languageSelect').value = settings.language;
+        document.getElementById('notificationsToggle').checked = settings.notifications;
+    });
+
+    document.getElementById('accountForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var fullName = document.getElementById('fullName').value.trim();
+        var email = document.getElementById('email').value.trim();
+        var username = document.getElementById('username').value.trim();
+
+        if (!fullName || !email || !username) {
+            showMessage('Vui lòng điền đầy đủ thông tin tài khoản.', true);
+            return;
+        }
+
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            showMessage('Email không hợp lệ.', true);
+            return;
+        }
+
+        var currentUser = getCurrentUser();
+        if (!currentUser) {
+            showMessage('Không tìm thấy tài khoản đang đăng nhập.', true);
+            return;
+        }
+
+        currentUser.fullName = fullName;
+        currentUser.email = email;
+        currentUser.username = username;
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        showMessage('Đã lưu thông tin tài khoản.', false);
+    });
+
+    document.getElementById('securityForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var currentPassword = document.getElementById('currentPassword').value;
+        var newPassword = document.getElementById('newPassword').value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (!currentPassword || !newPassword || !confirmPassword) {
+            showMessage('Vui lòng điền đầy đủ thông tin bảo mật.', true);
+            return;
+        }
+
+        if (newPassword.length < 6) {
+            showMessage('Mật khẩu mới phải có ít nhất 6 ký tự.', true);
+            return;
+        }
+
+        if (newPassword !== confirmPassword) {
+            showMessage('Mật khẩu xác nhận không trùng khớp.', true);
+            return;
+        }
+
+        var users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+        var currentUser = getCurrentUser();
+        var matched = users.find(function (user) {
+            return user.username === currentUser.username && user.password === currentPassword;
+        });
+
+        if (!matched) {
+            showMessage('Mật khẩu hiện tại không đúng.', true);
+            return;
+        }
+
+        matched.password = newPassword;
+        localStorage.setItem('registeredUsers', JSON.stringify(users));
+        showMessage('Mật khẩu đã được cập nhật.', false);
+        document.getElementById('securityForm').reset();
+    });
+
+    document.getElementById('savePreferences').addEventListener('click', function () {
+        var settings = {
+            theme: document.getElementById('themeSelect').value,
+            language: document.getElementById('languageSelect').value,
+            notifications: document.getElementById('notificationsToggle').checked
+        };
+        saveUserSettings(settings);
+        showMessage('Tùy chọn đã được lưu.', false);
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý nhà cung cấp</title>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/nhacungcap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="container">
+    <aside class="sidebar">
+
+        <div class="logo">
+            <img src="../img/logo.png" alt="Logo">
+            <h2>Coffee Anh Ba</h2>
+        </div>
+
+        <ul>
+
+            <li><a href="tongquan.html"><i class="fa-solid fa-house"></i><span>Tổng quan</span></a></li>
+
+            <li><a href="donhang.html"><i class="fa-solid fa-cart-shopping"></i><span>Đơn hàng</span></a></li>
+
+            <li><a href="sanpham.html"><i class="fa-solid fa-mug-hot"></i><span>Sản phẩm</span></a></li>
+
+            <li><a href="danhmuc.html"><i class="fa-solid fa-layer-group"></i><span>Danh mục</span></a></li>
+
+            <li><a href="ban.html"><i class="fa-solid fa-chair"></i><span>Bàn</span></a></li>
+
+            <li><a href="khachhang.html"><i class="fa-solid fa-users"></i><span>Khách hàng</span></a></li>
+
+            <li><a href="nhanvien.html"><i class="fa-solid fa-user-tie"></i><span>Nhân viên</span></a></li>
+
+            <li class="active">
+                <a href="nhacungcap.html">
+                    <i class="fa-solid fa-truck"></i>
+                    <span>Nhà cung cấp</span>
+                </a>
+            </li>
+
+            <li><a href="doanhthu.html"><i class="fa-solid fa-chart-line"></i><span>Doanh thu</span></a></li>
+
+            <li><a href="sanphambanchay.html"><i class="fa-solid fa-fire"></i><span>Sản phẩm bán chạy</span></a></li>
+
+            <li><a href="nhapkho.html"><i class="fa-solid fa-box"></i><span>Nhập kho</span></a></li>
+
+            <li><a href="chiphi.html"><i class="fa-solid fa-money-bill-wave"></i><span>Chi phí</span></a></li>
+
+            <li><a href="caidat.html"><i class="fa-solid fa-gear"></i><span>Cài đặt</span></a></li>
+
+            <li><a href="dangxuat.html"><i class="fa-solid fa-right-from-bracket"></i><span>Đăng xuất</span></a></li>
+
+        </ul>
+
+    </aside>
+    <main class="main">
+
+        <header class="content-header">
+
+            <div>
+
+                <h1 class="page-title">
+                    Quản lý nhà cung cấp
+                </h1>
+
+                <p class="page-subtitle">
+                    Quản lý thông tin các nhà cung cấp nguyên liệu
+                </p>
+
+            </div>
+
+            <button class="btn-primary" id="openModal">
+                <i class="fa-solid fa-plus"></i>
+                Thêm nhà cung cấp
+            </button>
+
+        </header>
+
+        <section class="summary-grid">
+<div class="summary-card">
+
+                <div class="summary-icon blue">
+
+                    <i class="fa-solid fa-truck"></i>
+
+                </div>
+
+                <div>
+
+                    <h3 id="totalSupplier">0</h3>
+
+                    <p>Tổng nhà cung cấp</p>
+
+                </div>
+
+            </div>
+
+            <div class="summary-card">
+
+                <div class="summary-icon green">
+
+                    <i class="fa-solid fa-handshake"></i>
+
+                </div>
+
+                <div>
+
+                    <h3 id="activeSupplier">0</h3>
+
+                    <p>Đang hợp tác</p>
+
+                </div>
+
+            </div>
+
+            <div class="summary-card">
+
+                <div class="summary-icon gold">
+
+                    <i class="fa-solid fa-clock"></i>
+
+                </div>
+
+                <div>
+
+                    <h3 id="pauseSupplier">0</h3>
+
+                    <p>Tạm ngưng</p>
+
+                </div>
+
+            </div>
+
+            <div class="summary-card">
+
+                <div class="summary-icon purple">
+
+                    <i class="fa-solid fa-box"></i>
+
+                </div>
+
+                <div>
+
+                    <h3 id="totalProduct">0</h3>
+
+                    <p>Nguyên liệu cung cấp</p>
+
+                </div>
+
+            </div>
+
+        </section>
+        <section class="content-card">
+
+            <div class="content-header">
+
+                <div>
+
+                    <h2>Danh sách nhà cung cấp</h2>
+
+                    <p>Quản lý thông tin nhà cung cấp</p>
+
+                </div>
+
+                <div class="action-group">
+
+                    <div class="search-box">
+
+                        <i class="fa-solid fa-search"></i>
+
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Tìm tên, SĐT hoặc Email">
+
+                    </div>
+
+                    <select
+                        id="filterStatus"
+                        class="btn-outline">
+
+                        <option value="">
+                            Tất cả
+                        </option>
+
+                        <option value="Đang hợp tác">
+                            Đang hợp tác
+                        </option>
+
+                        <option value="Tạm ngưng">
+                            Tạm ngưng
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+<div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Nhà cung cấp</th>
+
+                            <th>Điện thoại</th>
+
+                            <th>Email</th>
+
+                            <th>Địa chỉ</th>
+
+                            <th>Nguyên liệu</th>
+
+                            <th>Trạng thái</th>
+
+                            <th>Thao tác</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="supplierTableBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div
+                id="emptyMessage"
+                style="display:none;
+                       text-align:center;
+                       padding:30px;
+                       color:#6b7280;">
+
+                <i class="fa-solid fa-truck"
+                   style="font-size:42px;
+                          margin-bottom:12px;"></i>
+
+                <h3>Chưa có nhà cung cấp</h3>
+
+                <p>Nhấn "Thêm nhà cung cấp" để tạo mới.</p>
+
+            </div>
+
+        </section>
+<div class="modal" id="supplierModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">Thêm nhà cung cấp</h2>
+
+            <button type="button" id="closeModal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+        <form id="supplierForm">
+
+            <input type="hidden" id="supplierIndex">
+
+            <div class="form-group">
+                <label>Tên nhà cung cấp</label>
+                <input
+                    type="text"
+                    id="supplierName"
+                    placeholder="Nhập tên nhà cung cấp"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label>Số điện thoại</label>
+                <input
+                    type="text"
+                    id="supplierPhone"
+                    placeholder="Nhập số điện thoại"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input
+                    type="email"
+                    id="supplierEmail"
+                    placeholder="Nhập email"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label>Địa chỉ</label>
+                <input
+                    type="text"
+                    id="supplierAddress"
+                    placeholder="Nhập địa chỉ"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label>Nguyên liệu cung cấp</label>
+                <input
+                    type="text"
+                    id="supplierProduct"
+                    placeholder="Ví dụ: Cà phê, Sữa, Đường..."
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label>Trạng thái</label>
+
+                <select id="supplierStatus">
+
+                    <option value="Đang hợp tác">
+                        Đang hợp tác
+                    </option>
+
+                    <option value="Tạm ngưng">
+                        Tạm ngưng
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    id="cancelBtn"
+                    class="btn-outline">
+
+                    Hủy
+
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn-primary">
+
+                    Lưu nhà cung cấp
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</main>
+
+</div>
+
+<script src="../js/nhacungcap.js"></script>
+
+</body>
+</html>
