@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doanh thu - Quản lý Quán Nước</title>
+
+    <link rel="stylesheet" href="../css/doanhthu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+<body>
+
+<div class="container">
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="../img/logo.png" alt="Logo">
+            <h2>Coffee Anh Ba</h2>
+        </div>
+        <ul>
+            <li><a href="tongquan.html" class="nav-link"><i class="fa-solid fa-house"></i><span>Tổng quan</span></a></li>
+            <li><a href="donhang.html" class="nav-link"><i class="fa-solid fa-cart-shopping"></i><span>Đơn hàng</span></a></li>
+            <li><a href="sanpham.html" class="nav-link"><i class="fa-solid fa-mug-hot"></i><span>Sản phẩm</span></a></li>
+            <li><a href="danhmuc.html" class="nav-link"><i class="fa-solid fa-layer-group"></i><span>Danh mục</span></a></li>
+            <li><a href="ban.html" class="nav-link"><i class="fa-solid fa-chair"></i><span>Bàn</span></a></li>
+            <li><a href="khachhang.html" class="nav-link"><i class="fa-solid fa-users"></i><span>Khách hàng</span></a></li>
+            <li><a href="nhanvien.html" class="nav-link"><i class="fa-solid fa-user-tie"></i><span>Nhân viên</span></a></li>
+            <li><a href="nhacungcap.html" class="nav-link"><i class="fa-solid fa-truck"></i><span>Nhà cung cấp</span></a></li>
+            <li><a href="doanhthu.html" class="nav-link active"><i class="fa-solid fa-chart-line"></i><span>Doanh thu</span></a></li>
+            <li><a href="sanphambanchay.html" class="nav-link"><i class="fa-solid fa-chart-simple"></i><span>Sản phẩm bán chạy</span></a></li>
+            <li><a href="nhapkho.html" class="nav-link"><i class="fa-solid fa-box"></i><span>Nhập kho</span></a></li>
+            <li><a href="chiphi.html" class="nav-link"><i class="fa-solid fa-wallet"></i><span>Chi phí</span></a></li>
+            <li><a href="caidat.html" class="nav-link"><i class="fa-solid fa-gear"></i><span>Cài đặt</span></a></li>
+            <li><a href="dangxuat.html" class="nav-link"><i class="fa-solid fa-right-from-bracket"></i><span>Đăng xuất</span></a></li>
+        </ul>
+    </aside>
+
+    <main class="main">
+        <header>
+            <div>
+                <h1>Doanh thu</h1>
+                <p>Theo dõi doanh thu hàng ngày, tuần và tháng để tối ưu hoạt động quán.</p>
+            </div>
+            <div class="profile">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Doanh thu tháng</span>
+            </div>
+        </header>
+
+        <section class="dashboard-cards">
+            <article class="card card-blue">
+                <div class="card-title">Doanh thu hôm nay</div>
+                <div class="card-value">12.450.000₫</div>
+                <div class="card-note">Tăng 14% so với hôm qua</div>
+            </article>
+            <article class="card card-green">
+                <div class="card-title">Doanh thu tháng</div>
+                <div class="card-value">285.300.000₫</div>
+                <div class="card-note">Đạt 78% mục tiêu</div>
+            </article>
+            <article class="card card-purple">
+                <div class="card-title">Tổng đơn hàng</div>
+                <div class="card-value">420</div>
+                <div class="card-note">Trung bình 35 đơn/ngày</div>
+            </article>
+            <article class="card card-orange">
+                <div class="card-title">Khách hàng mới</div>
+                <div class="card-value">85</div>
+                <div class="card-note">Tăng 18% so với tuần trước</div>
+            </article>
+        </section>
+
+        <section class="analytics-section">
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h2>Doanh thu theo tuần</h2>
+                    <span>Đơn vị: triệu đồng</span>
+                </div>
+                <div class="chart-grid">
+                    <div class="bar" style="height: 42%;"><span>Thứ 2</span></div>
+                    <div class="bar" style="height: 58%;"><span>Thứ 3</span></div>
+                    <div class="bar" style="height: 63%;"><span>Thứ 4</span></div>
+                    <div class="bar" style="height: 70%;"><span>Thứ 5</span></div>
+                    <div class="bar" style="height: 84%;"><span>Thứ 6</span></div>
+                    <div class="bar" style="height: 91%;"><span>Thứ 7</span></div>
+                    <div class="bar" style="height: 77%;"><span>Chủ nhật</span></div>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <h2>Phân tích nhanh</h2>
+                <div class="summary-item">
+                    <div>
+                        <p class="summary-label">Sản phẩm bán chạy</p>
+                        <h3>Caffe Latte</h3>
+                    </div>
+                    <span class="tag">35%</span>
+                </div>
+                <div class="summary-item">
+                    <div>
+                        <p class="summary-label">Giờ cao điểm</p>
+                        <h3>16:00 - 18:00</h3>
+                    </div>
+                    <span class="tag">Top</span>
+                </div>
+                <div class="summary-item">
+                    <div>
+                        <p class="summary-label">Lượng khách trung bình</p>
+                        <h3>72 lượt/ngày</h3>
+                    </div>
+                    <span class="tag">Ổn định</span>
+                </div>
+                <div class="summary-item">
+                    <div>
+                        <p class="summary-label">Tỷ lệ hoàn tiền</p>
+                        <h3>1.8%</h3>
+                    </div>
+                    <span class="tag tag-soft">Tốt</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="table-section">
+            <div class="table-card">
+                <div class="table-header">
+                    <h2>Chi tiết doanh thu</h2>
+                    <button class="download-btn"><i class="fa-solid fa-download"></i> Xuất báo cáo</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ngày</th>
+                            <th>Doanh thu</th>
+                            <th>Đơn hàng</th>
+                            <th>Khách mới</th>
+                            <th>Ghi chú</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>01/07/2026</td>
+                            <td>9.800.000₫</td>
+                            <td>35</td>
+                            <td>12</td>
+                            <td>Đỉnh điểm buổi chiều</td>
+                        </tr>
+                        <tr>
+                            <td>02/07/2026</td>
+                            <td>11.300.000₫</td>
+                            <td>41</td>
+                            <td>9</td>
+                            <td>Tăng doanh thu từ trà sữa</td>
+                        </tr>
+                        <tr>
+                            <td>03/07/2026</td>
+                            <td>10.600.000₫</td>
+                            <td>38</td>
+                            <td>10</td>
+                            <td>Chiến dịch giảm giá</td>
+                        </tr>
+                        <tr>
+                            <td>04/07/2026</td>
+                            <td>12.200.000₫</td>
+                            <td>44</td>
+                            <td>14</td>
+                            <td>Doanh thu cao nhất tuần</td>
+                        </tr>
+                        <tr>
+                            <td>05/07/2026</td>
+                            <td>10.900.000₫</td>
+                            <td>39</td>
+                            <td>11</td>
+                            <td>Khuyến mãi bánh ngọt</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</div>
+
+</body>
+</html>

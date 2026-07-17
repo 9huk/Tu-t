@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - Quản lý Quán Nước</title>
+
+    <link rel="stylesheet" href="../css/dangnhap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+<body>
+
+<div class="login-page">
+    <div class="login-panel login-intro">
+        <div class="brand">
+            <div class="brand-icon">
+                <i class="fa-solid fa-mug-hot"></i>
+            </div>
+            <div>
+                <h1>Quản Lý Quán Nước</h1>
+                <p>Hệ thống quản lý bán hàng chuyên nghiệp cho quán nước, cà phê và trà sữa.</p>
+            </div>
+        </div>
+
+        <div class="feature-list">
+            <div><i class="fa-solid fa-check"></i> Quản lý đơn hàng dễ dàng</div>
+            <div><i class="fa-solid fa-check"></i> Theo dõi doanh thu tức thì</div>
+            <div><i class="fa-solid fa-check"></i> Quản lý nhân viên và kho</div>
+        </div>
+
+        <div class="welcome-note">
+            <h2>Chào mừng trở lại!</h2>
+            <p>Đăng nhập để tiếp tục quản lý quán, xem báo cáo và xử lý đơn hàng ngay lập tức.</p>
+        </div>
+    </div>
+
+    <div class="login-panel login-form-panel">
+        <form id="loginForm" class="login-form">
+            <h2>Đăng nhập</h2>
+            <p class="subtext">Nhập thông tin tài khoản để bắt đầu.</p>
+
+            <div class="field-group">
+                <label for="username">Tên đăng nhập</label>
+                <div class="field-input">
+                    <i class="fa-solid fa-user"></i>
+                    <input id="username" name="username" type="text" placeholder="Nhập tên đăng nhập" autocomplete="username">
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label for="password">Mật khẩu</label>
+                <div class="field-input">
+                    <i class="fa-solid fa-lock"></i>
+                    <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" autocomplete="current-password">
+                </div>
+            </div>
+
+            <div class="form-meta">
+                <label class="checkbox-label">
+                    <input id="remember" name="remember" type="checkbox">
+                    Ghi nhớ đăng nhập
+                </label>
+                <a class="forgot-link" href="#">Quên mật khẩu?</a>
+            </div>
+
+            <div class="form-error" id="formError" role="alert" aria-live="polite"></div>
+
+            <button type="submit" class="submit-button">Đăng nhập</button>
+
+            <div class="form-footer">
+                <span>Chưa có tài khoản?</span>
+                <a href="dangky.html">Đăng ký</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function getRegisteredUsers() {
+        var users = localStorage.getItem('registeredUsers');
+        return users ? JSON.parse(users) : [];
+    }
+
+    function saveRegisteredUsers(users) {
+        localStorage.setItem('registeredUsers', JSON.stringify(users));
+    }
+
+    window.addEventListener('DOMContentLoaded', function () {
+        var remembered = localStorage.getItem('rememberUser');
+        if (remembered) {
+            document.getElementById('username').value = remembered;
+            document.getElementById('remember').checked = true;
+        }
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var username = document.getElementById('username').value.trim();
+        var password = document.getElementById('password').value.trim();
+        var remember = document.getElementById('remember').checked;
+        var errorBox = document.getElementById('formError');
+
+        errorBox.textContent = '';
+
+        if (!username || !password) {
+            errorBox.textContent = 'Vui lòng nhập cả tên đăng nhập và mật khẩu.';
+            return;
+        }
+
+        var users = getRegisteredUsers();
+        var matchedUser = users.find(function (user) {
+            return user.username === username && user.password === password;
+        });
+
+        if (!matchedUser) {
+            errorBox.textContent = 'Tên đăng nhập hoặc mật khẩu không đúng.';
+            return;
+        }
+
+        if (remember) {
+            localStorage.setItem('rememberUser', username);
+        } else {
+            localStorage.removeItem('rememberUser');
+        }
+
+        localStorage.setItem('currentUser', JSON.stringify({
+            fullName: matchedUser.fullName,
+            email: matchedUser.email,
+            username: matchedUser.username
+        }));
+
+        window.location.href = 'tongquan.html';
+    });
+</script>
+
+</body>
+</html>

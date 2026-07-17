@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Quản lý chi phí</title>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/chiphi.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <img src="../img/logo.png" alt="Logo">
+
+            <h2>Coffee Anh Ba</h2>
+
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="tongquan.html" class="nav-link">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Tổng quan</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="donhang.html" class="nav-link">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Đơn hàng</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="sanpham.html" class="nav-link">
+                    <i class="fa-solid fa-mug-hot"></i>
+                    <span>Sản phẩm</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="danhmuc.html" class="nav-link">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>Danh mục</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="ban.html" class="nav-link">
+                    <i class="fa-solid fa-chair"></i>
+                    <span>Bàn</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="khachhang.html" class="nav-link">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Khách hàng</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="nhanvien.html" class="nav-link">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <span>Nhân viên</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="nhacungcap.html" class="nav-link">
+                    <i class="fa-solid fa-truck"></i>
+                    <span>Nhà cung cấp</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="doanhthu.html" class="nav-link">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Doanh thu</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="sanphambanchay.html" class="nav-link">
+                    <i class="fa-solid fa-fire"></i>
+                    <span>Sản phẩm bán chạy</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="nhapkho.html" class="nav-link">
+                    <i class="fa-solid fa-box"></i>
+                    <span>Nhập kho</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="chiphi.html" class="nav-link active">
+                    <i class="fa-solid fa-wallet"></i>
+                    <span>Chi phí</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="caidat.html" class="nav-link">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Cài đặt</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="dangxuat.html" class="nav-link">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Đăng xuất</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <main class="main">
+
+        <header class="page-header">
+
+            <div>
+
+                <h1 class="page-title">
+                    Quản lý chi phí
+                </h1>
+
+                <p class="page-subtitle">
+                    Theo dõi các khoản chi của quán
+                </p>
+
+            </div>
+
+            <button class="btn-primary">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Thêm chi phí
+
+            </button>
+
+        </header>
+        <section class="summary-grid">
+
+            <div class="summary-card">
+
+                <div class="summary-icon orange">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                </div>
+
+                <div>
+
+                    <h3 id="totalExpense">42</h3>
+
+                    <p>Tổng khoản chi</p>
+
+                </div>
+
+            </div>
+
+            <div class="summary-card">
+
+                <div class="summary-icon blue">
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                </div>
+
+                <div>
+
+                    <h3 id="totalMoney">48.200.000đ</h3>
+
+                    <p>Tổng chi tháng</p>
+
+                </div>
+
+            </div>
+
+            <div class="summary-card">
+
+                <div class="summary-icon green">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <div>
+
+                    <h3 id="paidExpense">36</h3>
+
+                    <p>Đã thanh toán</p>
+
+                </div>
+
+            </div>
+
+            <div class="summary-card">
+
+                <div class="summary-icon purple">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+
+                <div>
+
+                    <h3 id="unPaidExpense">6</h3>
+
+                    <p>Chưa thanh toán</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="content-card">
+
+            <div class="content-header">
+
+                <div>
+
+                    <h2>Danh sách chi phí</h2>
+
+                    <p>Quản lý toàn bộ các khoản chi phát sinh</p>
+
+                </div>
+
+                <div class="action-group">
+
+                    <div class="search-box">
+
+                        <i class="fa-solid fa-search"></i>
+
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Tìm kiếm chi phí...">
+
+                    </div>
+
+                    <button class="btn-outline">
+
+                        <i class="fa-solid fa-filter"></i>
+
+                        Lọc
+
+                    </button>
+
+                </div>
+
+            </div>
+
+<form id="expenseForm">
+
+    <div class="form-grid">
+
+        <div class="field">
+            <label for="expenseCode">Mã chi phí</label>
+            <input
+                type="text"
+                id="expenseCode"
+                placeholder="Ví dụ: CP001"
+                required>
+        </div>
+
+        <div class="field">
+            <label for="expenseType">Loại chi phí</label>
+
+            <select id="expenseType" required>
+
+                <option value="">-- Chọn loại chi phí --</option>
+
+                <option>Tiền điện</option>
+                <option>Tiền nước</option>
+                <option>Thuê mặt bằng</option>
+                <option>Nhập nguyên liệu</option>
+                <option>Lương nhân viên</option>
+                <option>Marketing</option>
+                <option>Sửa chữa</option>
+                <option>Chi phí khác</option>
+
+            </select>
+
+        </div>
+
+        <div class="field">
+
+            <label for="expenseAmount">Số tiền</label>
+
+            <input
+                type="number"
+                id="expenseAmount"
+                placeholder="0"
+                min="0"
+                required>
+
+        </div>
+
+        <div class="field">
+
+            <label for="expenseDate">Ngày thanh toán</label>
+
+            <input
+                type="date"
+                id="expenseDate"
+                required>
+
+        </div>
+
+        <div class="field">
+
+            <label for="expensePerson">Người thanh toán</label>
+
+            <input
+                type="text"
+                id="expensePerson"
+                placeholder="Tên người thanh toán"
+                required>
+
+        </div>
+
+        <div class="field">
+
+            <label for="expenseSupplier">Nhà cung cấp</label>
+
+            <input
+                type="text"
+                id="expenseSupplier"
+                placeholder="Tên nhà cung cấp">
+
+        </div>
+
+        <div class="field">
+
+            <label for="expenseMethod">Phương thức</label>
+
+            <select id="expenseMethod">
+
+                <option>Tiền mặt</option>
+                <option>Chuyển khoản</option>
+                <option>Ví điện tử</option>
+
+            </select>
+
+        </div>
+
+        <div class="field">
+
+            <label for="expenseStatus">Trạng thái</label>
+
+            <select id="expenseStatus">
+
+                <option value="paid">Đã thanh toán</option>
+                <option value="unpaid">Chưa thanh toán</option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+    <div class="field full">
+
+        <label for="expenseNote">Ghi chú</label>
+
+        <textarea
+            id="expenseNote"
+            placeholder="Nhập ghi chú nếu có..."></textarea>
+
+    </div>
+
+    <div class="action-group">
+
+        <button
+            type="submit"
+            class="btn-save">
+
+            <i class="fa-solid fa-floppy-disk"></i>
+
+            Lưu chi phí
+
+        </button>
+
+        <button
+            type="reset"
+            class="btn-outline">
+
+            <i class="fa-solid fa-rotate-left"></i>
+
+            Làm mới
+
+        </button>
+
+    </div>
+
+</form>
+<div class="table-wrapper">
+
+    <table id="expenseTable">
+
+        <thead>
+
+            <tr>
+
+                <th>Mã</th>
+                <th>Loại chi phí</th>
+                <th>Số tiền</th>
+                <th>Nhà cung cấp</th>
+                <th>Người thanh toán</th>
+                <th>Phương thức</th>
+                <th>Ngày</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="expenseBody">
+
+            <tr>
+
+                <td>CP001</td>
+
+                <td>Tiền điện</td>
+
+                <td>3.000.000đ</td>
+
+                <td>Điện lực Hà Nội</td>
+
+                <td>Admin</td>
+
+                <td>Chuyển khoản</td>
+
+                <td>01/07/2026</td>
+
+                <td>
+                    <span class="status paid">
+                        Đã thanh toán
+                    </span>
+                </td>
+
+                <td>
+
+                    <button class="btn-icon edit-btn">
+
+                        <i class="fa-solid fa-pen"></i>
+
+                    </button>
+
+                    <button class="btn-icon delete-btn">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>CP002</td>
+
+                <td>Tiền nước</td>
+
+                <td>1.200.000đ</td>
+
+                <td>Công ty nước</td>
+
+                <td>Admin</td>
+
+                <td>Tiền mặt</td>
+
+                <td>03/07/2026</td>
+
+                <td>
+
+                    <span class="status paid">
+
+                        Đã thanh toán
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <button class="btn-icon edit-btn">
+
+                        <i class="fa-solid fa-pen"></i>
+
+                    </button>
+
+                    <button class="btn-icon delete-btn">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>CP003</td>
+
+                <td>Marketing</td>
+
+                <td>2.500.000đ</td>
+
+                <td>Facebook Ads</td>
+
+                <td>Admin</td>
+
+                <td>Ví điện tử</td>
+
+                <td>05/07/2026</td>
+
+                <td>
+
+                    <span class="status unpaid">
+
+                        Chưa thanh toán
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <button class="btn-icon edit-btn">
+
+                        <i class="fa-solid fa-pen"></i>
+
+                    </button>
+
+                    <button class="btn-icon delete-btn">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+<div class="modal" id="deleteModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h3>Xác nhận</h3>
+
+            <button type="button">&times;</button>
+
+        </div>
+
+        <p>
+
+            Bạn có chắc chắn muốn xóa khoản chi này không?
+
+        </p>
+
+        <div class="modal-footer">
+
+            <button class="btn-outline">
+
+                Hủy
+
+            </button>
+
+            <button class="btn-primary">
+
+                Xóa
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+<script src="../js/chiphi.js"></script>
+
+</body>
+
+</html>

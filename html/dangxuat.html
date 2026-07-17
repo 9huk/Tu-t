@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng xuất - Quản lý Quán Nước</title>
+
+    <link rel="stylesheet" href="../css/dangxuat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+<body>
+
+<div class="logout-page">
+    <div class="logout-card">
+        <div class="icon-box">
+            <i class="fa-solid fa-right-from-bracket"></i>
+        </div>
+        <h1>Đăng xuất</h1>
+        <p>Bạn sắp rời khỏi hệ thống quản lý quán nước. Phiên đăng nhập hiện tại sẽ được kết thúc.</p>
+        <button id="confirmLogout">Đăng xuất ngay</button>
+        <a href="tongquan.html">Quay về trang chính</a>
+    </div>
+</div>
+
+<script>
+    document.getElementById('confirmLogout').addEventListener('click', function () {
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('rememberUser');
+        window.location.href = 'dangnhap.html';
+    });
+</script>
+
+</body>
+</html>

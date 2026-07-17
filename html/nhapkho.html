@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý nhập kho</title>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/nhapkho.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                <img src="../img/logo.png" alt="Logo">
+                <h2>Coffee Anh Ba</h2>
+            </div>
+
+            <ul>
+
+                <li><a href="tongquan.html"><i class="fa-solid fa-house"></i> Tổng quan</a></li>
+
+                <li><a href="donhang.html"><i class="fa-solid fa-cart-shopping"></i> Đơn hàng</a></li>
+
+                <li><a href="sanpham.html"><i class="fa-solid fa-mug-hot"></i> Sản phẩm</a></li>
+
+                <li><a href="danhmuc.html"><i class="fa-solid fa-layer-group"></i> Danh mục</a></li>
+
+                <li><a href="ban.html"><i class="fa-solid fa-chair"></i> Bàn</a></li>
+
+                <li><a href="khachhang.html"><i class="fa-solid fa-users"></i> Khách hàng</a></li>
+
+                <li><a href="nhanvien.html"><i class="fa-solid fa-user-tie"></i> Nhân viên</a></li>
+
+                <li><a href="nhacungcap.html"><i class="fa-solid fa-truck"></i> Nhà cung cấp</a></li>
+
+                <li><a href="doanhthu.html"><i class="fa-solid fa-chart-line"></i> Doanh thu</a></li>
+
+                <li><a href="sanphambanchay.html"><i class="fa-solid fa-fire"></i> Sản phẩm bán chạy</a></li>
+
+                <li class="active">
+                    <a href="nhapkho.html">
+                        <i class="fa-solid fa-box"></i>
+                        Nhập kho
+                    </a>
+                </li>
+
+                <li><a href="chiphi.html"><i class="fa-solid fa-money-bill-wave"></i> Chi phí</a></li>
+
+                <li><a href="caidat.html"><i class="fa-solid fa-gear"></i> Cài đặt</a></li>
+
+                <li><a href="dangxuat.html"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a></li>
+
+            </ul>
+
+        </aside>
+
+        <main class="main">
+
+            <header class="content-header">
+
+                <div>
+
+                    <h1 class="page-title">
+                        Quản lý nhập kho
+                    </h1>
+
+                    <p class="page-subtitle">
+                        Quản lý nguyên liệu và phiếu nhập kho
+                    </p>
+
+                </div>
+
+                <button class="btn-primary" id="saveBtnTop">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Tạo phiếu nhập
+
+                </button>
+
+            </header>
+
+            <section class="summary-grid">
+
+                <div class="summary-card">
+
+                    <div class="summary-icon blue">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                    </div>
+
+                    <div>
+
+                        <h3 id="totalImport">0</h3>
+
+                        <p>Phiếu nhập</p>
+
+                    </div>
+
+                </div>
+
+                <div class="summary-card">
+
+                    <div class="summary-icon green">
+                        <i class="fa-solid fa-cubes"></i>
+                    </div>
+
+                    <div>
+
+                        <h3 id="totalProduct">0</h3>
+
+                        <p>Mặt hàng</p>
+
+                    </div>
+
+                </div>
+
+                <div class="summary-card">
+
+                    <div class="summary-icon gold">
+                        <i class="fa-solid fa-coins"></i>
+                    </div>
+
+                    <div>
+
+                        <h3 id="totalMoney">0đ</h3>
+
+                        <p>Tổng giá trị nhập</p>
+
+                    </div>
+
+                </div>
+
+                <div class="summary-card">
+
+                    <div class="summary-icon purple">
+                        <i class="fa-solid fa-truck"></i>
+                    </div>
+
+                    <div>
+
+                        <h3 id="totalSupplier">0</h3>
+
+                        <p>Nhà cung cấp</p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section class="content-card">
+
+                <div class="content-header">
+
+                    <div>
+
+                        <h2>Tạo phiếu nhập kho</h2>
+
+                        <p>Điền đầy đủ thông tin nguyên liệu cần nhập.</p>
+
+                    </div>
+
+                    <div class="action-group">
+
+                        <div class="search-box">
+
+                            <i class="fa-solid fa-search"></i>
+
+                            <input type="text"
+                                id="searchInput"
+                                placeholder="Tìm mã hoặc tên sản phẩm">
+
+                        </div>
+
+                        <select id="filterCategory"
+                            class="btn-outline">
+
+                            <option value="">Tất cả danh mục</option>
+
+                            <option value="Cà phê">Cà phê</option>
+
+                            <option value="Trà">Trà</option>
+
+                            <option value="Sữa">Sữa</option>
+
+                            <option value="Sirup">Sirup</option>
+
+                            <option value="Đường">Đường</option>
+
+                            <option value="Topping">Topping</option>
+
+                            <option value="Khác">Khác</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="form-grid">
+
+                    <div class="field">
+
+                        <label>Mã sản phẩm</label>
+
+                        <input
+                            type="text"
+                            id="maSP"
+                            placeholder="SP001">
+
+                    </div>
+
+                    <div class="field">
+
+                        <label>Tên sản phẩm</label>
+
+                        <input
+                            type="text"
+                            id="tenSP"
+                            placeholder="Nhập tên sản phẩm">
+
+                    </div>
+
+                    <div class="field">
+
+                        <label>Danh mục</label>
+
+                        <select id="danhMuc">
+
+                            <option value="Cà phê">Cà phê</option>
+                            <option value="Trà">Trà</option>
+                            <option value="Sữa">Sữa</option>
+                            <option value="Sirup">Sirup</option>
+                            <option value="Đường">Đường</option>
+                            <option value="Topping">Topping</option>
+                            <option value="Khác">Khác</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="field">
+
+                        <label>Đơn vị tính</label>
+
+                        <select id="donVi">
+
+                            <option>Kg</option>
+                            <option>Thùng</option>
+                            <option>Hộp</option>
+                            <option>Chai</option>
+                            <option>Lon</option>
+                            <option>Túi</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="field">
+
+                        <label>Số lượng</label>
+
+                        <input
+                            type="number"
+                            id="soLuong"
+                            min="1"
+                            placeholder="0">
+
+                    </div>
+
+                    <div class="field">
+
+                        <label>Đơn giá</label>
+
+                        <input
+                            type="number"
+                            id="donGia"
+                            min="0"
+                            placeholder="0">
+
+                    </div>
+
+                    <div class="field">
+
+                        <label>Nhà cung cấp</label>
+
+                        <input
+                            type="text"
+                            id="nhaCungCap"
+                            placeholder="Tên nhà cung cấp">
+
+                    </div>
+
+                    <div class="field">
+
+                        <label>Ngày nhập</label>
+
+                        <input
+                            type="date"
+                            id="ngayNhap">
+
+                    </div>
+
+                </div>
+
+                <div class="form-actions">
+
+                    <button
+                        class="btn-primary"
+                        id="saveBtn">
+
+                        <i class="fa-solid fa-floppy-disk"></i>
+
+                        Lưu phiếu nhập
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn-outline"
+                        id="resetBtn">
+
+                        <i class="fa-solid fa-rotate-left"></i>
+
+                        Làm mới
+
+                    </button>
+
+                </div>
+
+            </section>
+<section class="content-card">
+
+    <div class="content-header">
+
+        <div>
+
+            <h2>Danh sách phiếu nhập</h2>
+
+            <p>Quản lý các phiếu nhập nguyên liệu trong kho</p>
+
+        </div>
+
+    </div>
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Mã SP</th>
+
+                    <th>Tên sản phẩm</th>
+
+                    <th>Danh mục</th>
+
+                    <th>ĐVT</th>
+
+                    <th>Số lượng</th>
+
+                    <th>Đơn giá</th>
+
+                    <th>Thành tiền</th>
+
+                    <th>Nhà cung cấp</th>
+
+                    <th>Ngày nhập</th>
+
+                    <th>Thao tác</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="importTableBody">
+
+                <tr>
+
+                    <td>SP001</td>
+
+                    <td>Hạt cà phê Arabica</td>
+
+                    <td>Cà phê</td>
+
+                    <td>Kg</td>
+
+                    <td>50</td>
+
+                    <td>220.000đ</td>
+
+                    <td>11.000.000đ</td>
+
+                    <td>Công ty Coffee Việt</td>
+
+                    <td>15/07/2026</td>
+
+                    <td class="action-buttons">
+
+                        <button class="btn-icon edit-btn">
+
+                            <i class="fa-solid fa-pen"></i>
+
+                        </button>
+
+                        <button class="btn-icon delete-btn">
+
+                            <i class="fa-solid fa-trash"></i>
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>SP002</td>
+
+                    <td>Trà Đào</td>
+
+                    <td>Trà</td>
+
+                    <td>Thùng</td>
+
+                    <td>20</td>
+
+                    <td>480.000đ</td>
+
+                    <td>9.600.000đ</td>
+
+                    <td>Tea House</td>
+
+                    <td>14/07/2026</td>
+
+                    <td class="action-buttons">
+
+                        <button class="btn-icon edit-btn">
+
+                            <i class="fa-solid fa-pen"></i>
+
+                        </button>
+
+                        <button class="btn-icon delete-btn">
+
+                            <i class="fa-solid fa-trash"></i>
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>SP003</td>
+
+                    <td>Sữa đặc</td>
+
+                    <td>Sữa</td>
+
+                    <td>Thùng</td>
+
+                    <td>15</td>
+
+                    <td>720.000đ</td>
+
+                    <td>10.800.000đ</td>
+
+                    <td>Vinamilk</td>
+
+                    <td>13/07/2026</td>
+
+                    <td class="action-buttons">
+
+                        <button class="btn-icon edit-btn">
+
+                            <i class="fa-solid fa-pen"></i>
+
+                        </button>
+
+                        <button class="btn-icon delete-btn">
+
+                            <i class="fa-solid fa-trash"></i>
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>SP004</td>
+
+                    <td>Sirup Caramel</td>
+
+                    <td>Sirup</td>
+
+                    <td>Chai</td>
+
+                    <td>30</td>
+
+                    <td>125.000đ</td>
+
+                    <td>3.750.000đ</td>
+
+                    <td>Monin Việt Nam</td>
+
+                    <td>12/07/2026</td>
+
+                    <td class="action-buttons">
+
+                        <button class="btn-icon edit-btn">
+
+                            <i class="fa-solid fa-pen"></i>
+
+                        </button>
+
+                        <button class="btn-icon delete-btn">
+
+                            <i class="fa-solid fa-trash"></i>
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>SP005</td>
+
+                    <td>Đường trắng</td>
+
+                    <td>Đường</td>
+
+                    <td>Kg</td>
+
+                    <td>100</td>
+
+                    <td>18.000đ</td>
+
+                    <td>1.800.000đ</td>
+
+                    <td>Công ty Biên Hòa</td>
+
+                    <td>11/07/2026</td>
+
+                    <td class="action-buttons">
+
+                        <button class="btn-icon edit-btn">
+
+                            <i class="fa-solid fa-pen"></i>
+
+                        </button>
+
+                        <button class="btn-icon delete-btn">
+
+                            <i class="fa-solid fa-trash"></i>
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+       </section>
+        </main>
+
+    </div>
+
+    <script src="../js/nhapkho.js"></script>
+
+</body>
+
+</html>
