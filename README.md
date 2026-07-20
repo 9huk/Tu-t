@@ -13,7 +13,7 @@ Dự án được xây dựng hoàn toàn bằng **HTML, CSS và JavaScript**, s
 
 Mục tiêu của dự án là giúp người quản lý dễ dàng theo dõi hoạt động kinh doanh, tiết kiệm thời gian và nâng cao hiệu quả quản lý.
 
-Đây là đồ án môn học được thực hiện bởi **Nhóm 3**.
+Đây là đồ án môn học được thực hiện bởi **Nhóm 2**.
 
 ---
 
