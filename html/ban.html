@@ -1,203 +1,768 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
     <title>Quản lý bàn - Coffee Anh Ba</title>
 
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/ban.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet"
+        href="../css/common.css">
+
+
+    <link rel="stylesheet"
+        href="../css/ban.css">
+
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
+
 
 <body>
 
+
 <div class="container">
+
+
 
     <aside class="sidebar">
 
+
         <div class="logo">
-            <img src="../img/logo.png" alt="">
-            <h2>Coffee Anh Ba</h2>
+
+
+            <img
+                src="../img/logo.png"
+                alt="Logo">
+
+
+            <h2>
+
+                Coffee Anh Ba
+
+            </h2>
+
+
         </div>
+
 
         <ul>
 
-            <li><a href="tongquan.html"><i class="fa-solid fa-house"></i> Tổng quan</a></li>
 
-            <li><a href="donhang.html"><i class="fa-solid fa-cart-shopping"></i> Đơn hàng</a></li>
+            <li>
 
-            <li><a href="sanpham.html"><i class="fa-solid fa-mug-hot"></i> Sản phẩm</a></li>
+                <a href="tongquan.html">
 
-            <li><a href="danhmuc.html"><i class="fa-solid fa-layer-group"></i> Danh mục</a></li>
+                    <i class="fa-solid fa-house"></i>
 
-            <li class="active">
-                <a href="ban.html">
-                    <i class="fa-solid fa-chair"></i> Bàn
+                    <span>Tổng quan</span>
+
                 </a>
+
             </li>
 
-            <li><a href="khachhang.html"><i class="fa-solid fa-users"></i> Khách hàng</a></li>
 
-            <li><a href="nhanvien.html"><i class="fa-solid fa-user-tie"></i> Nhân viên</a></li>
+            <li>
 
-            <li><a href="nhacungcap.html"><i class="fa-solid fa-truck"></i> Nhà cung cấp</a></li>
+                <a href="donhang.html">
 
-            <li><a href="doanhthu.html"><i class="fa-solid fa-chart-line"></i> Doanh thu</a></li>
+                    <i class="fa-solid fa-cart-shopping"></i>
 
-            <li><a href="sanphambanchay.html"><i class="fa-solid fa-fire"></i> Sản phẩm bán chạy</a></li>
+                    <span>Đơn hàng</span>
 
-            <li><a href="nhapkho.html"><i class="fa-solid fa-box"></i> Nhập kho</a></li>
+                </a>
 
-            <li><a href="chiphi.html"><i class="fa-solid fa-money-bill-wave"></i> Chi phí</a></li>
+            </li>
 
-            <li><a href="caidat.html"><i class="fa-solid fa-gear"></i> Cài đặt</a></li>
 
-            <li><a href="dangxuat.html"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a></li>
+            <li>
+
+                <a href="sanpham.html">
+
+                    <i class="fa-solid fa-mug-hot"></i>
+
+                    <span>Sản phẩm</span>
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="danhmuc.html">
+
+                    <i class="fa-solid fa-layer-group"></i>
+
+                    <span>Danh mục</span>
+
+                </a>
+
+            </li>
+
+
+            <li class="active">
+
+                <a href="ban.html">
+
+                    <i class="fa-solid fa-chair"></i>
+
+                    <span>Bàn</span>
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="khachhang.html">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <span>Khách hàng</span>
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="nhanvien.html">
+
+                    <i class="fa-solid fa-user-tie"></i>
+
+                    <span>Nhân viên</span>
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="nhacungcap.html">
+
+                    <i class="fa-solid fa-truck"></i>
+
+                    <span>Nhà cung cấp</span>
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="doanhthu.html">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <span>Doanh thu</span>
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="sanphambanchay.html">
+
+                    <i class="fa-solid fa-fire"></i>
+
+                    <span>Sản phẩm bán chạy</span>
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="nhapkho.html">
+
+                    <i class="fa-solid fa-box"></i>
+
+                    <span>Nhập kho</span>
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="chiphi.html">
+
+                    <i class="fa-solid fa-money-bill-wave"></i>
+
+                    <span>Chi phí</span>
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="caidat.html">
+
+                    <i class="fa-solid fa-gear"></i>
+
+                    <span>Cài đặt</span>
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="dangxuat.html">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    <span>Đăng xuất</span>
+
+                </a>
+
+            </li>
+
 
         </ul>
 
+
     </aside>
+
+
     <main class="main">
+
+
 
         <div class="page-header">
 
+
             <div>
-                <h1>Quản lý bàn</h1>
-                <p>Quản lý danh sách bàn của quán</p>
+
+                <h1>
+
+                    Quản lý bàn
+
+                </h1>
+
+
+                <p>
+
+                    Quản lý danh sách bàn của quán
+
+                </p>
+
+
             </div>
 
-            <button id="openModal" class="btn-primary">
+
+            <button
+
+                id="openModal"
+
+                class="btn-primary">
+
+
                 <i class="fa-solid fa-plus"></i>
+
+
                 Thêm bàn
+
+
             </button>
 
-        </div>
-        <div class="toolbar">
-
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="Tìm kiếm tên bàn...">
-
-            <select id="filterStatus">
-                <option value="">Tất cả trạng thái</option>
-                <option value="available">Còn trống</option>
-                <option value="occupied">Đang sử dụng</option>
-<option value="maintenance">Bảo trì</option>
-            </select>
 
         </div>
-        <section class="table-grid" id="tableGrid">
+
+
+
+        <section class="summary-grid">
+
+
+            <div class="summary-card">
+
+
+                <div class="summary-icon total">
+
+                    <i class="fa-solid fa-chair"></i>
+
+                </div>
+
+
+                <div>
+
+                    <span>Tổng số bàn</span>
+
+                    <strong id="totalTables">
+
+                        0
+
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="summary-card">
+
+
+                <div class="summary-icon available">
+
+                    <i class="fa-solid fa-check"></i>
+
+                </div>
+
+
+                <div>
+
+                    <span>Còn trống</span>
+
+                    <strong id="availableTables">
+
+                        0
+
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="summary-card">
+
+
+                <div class="summary-icon occupied">
+
+                    <i class="fa-solid fa-users"></i>
+
+                </div>
+
+
+                <div>
+
+                    <span>Đang sử dụng</span>
+
+                    <strong id="occupiedTables">
+
+                        0
+
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="summary-card">
+
+
+                <div class="summary-icon maintenance">
+
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                </div>
+
+
+                <div>
+
+                    <span>Bảo trì</span>
+
+                    <strong id="maintenanceTables">
+
+                        0
+
+                    </strong>
+
+                </div>
+
+
+            </div>
+
 
         </section>
 
-    </main>
 
-</div>
-<div class="modal" id="tableModal">
 
-    <div class="modal-content">
+        <div class="toolbar">
 
-        <div class="modal-header">
 
-            <h2 id="modalTitle">Thêm bàn</h2>
+            <div class="search-box">
 
-            <button id="closeModal">
-                <i class="fa-solid fa-xmark"></i>
+
+                <i class="fa-solid fa-search"></i>
+
+
+                <input
+
+                    type="text"
+
+                    id="searchInput"
+
+                    placeholder="Tìm kiếm tên bàn...">
+
+
+            </div>
+
+
+            <select
+
+                id="filterStatus">
+
+
+                <option value="">
+
+                    Tất cả trạng thái
+
+                </option>
+
+
+                <option value="available">
+
+                    Còn trống
+
+                </option>
+
+
+                <option value="occupied">
+
+                    Đang sử dụng
+
+                </option>
+
+
+                <option value="maintenance">
+
+                    Bảo trì
+
+                </option>
+
+
+            </select>
+
+
+            <select id="filterArea">
+
+
+                <option value="">
+
+                    Tất cả khu vực
+
+                </option>
+
+
+                <option value="Trong nhà">
+
+                    Trong nhà
+
+                </option>
+
+
+                <option value="Ngoài trời">
+
+                    Ngoài trời
+
+                </option>
+
+
+                <option value="Tầng 2">
+
+                    Tầng 2
+
+                </option>
+
+
+            </select>
+
+
+            <button
+
+                id="resetFilter"
+
+                class="btn-secondary">
+
+
+                <i class="fa-solid fa-rotate-left"></i>
+
+
+                Xóa bộ lọc
+
+
             </button>
+
 
         </div>
 
-        <form id="tableForm">
 
-            <input
-                type="hidden"
-                id="tableIndex">
 
-            <div class="form-group">
+        <section
 
-                <label>Tên bàn</label>
+            class="table-grid"
 
-                <input
-                    type="text"
-                    id="tableName"
-                    required>
+            id="tableGrid">
 
-            </div>
 
-            <div class="form-group">
+        </section>
 
-                <label>Sức chứa</label>
 
-                <input
-                    type="number"
-                    id="capacity"
-                    min="1"
-                    required>
+    </main>
 
-            </div>
-
-            <div class="form-group">
-
-                <label>Khu vực</label>
-
-                <select id="area">
-
-                    <option>Trong nhà</option>
-
-                    <option>Ngoài trời</option>
-
-                    <option>Tầng 2</option>
-
-                </select>
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Trạng thái</label>
-
-                <select id="status">
-
-                    <option value="available">Còn trống</option>
-
-                    <option value="occupied">Đang sử dụng</option>
-
-                    <option value="maintenance">Bảo trì</option>
-
-                </select>
-
-            </div>
-
-            <div class="modal-footer">
-
-                <button
-                    type="button"
-                    class="btn-cancel"
-                    id="cancelBtn">
-
-                    Hủy
-
-                </button>
-
-                <button
-                    type="submit"
-                    class="btn-primary">
-
-                    Lưu
-
-                </button>
-
-            </div>
-
-        </form>
-
-    </div>
 
 </div>
 
+
+
+
+<div
+
+    class="modal"
+
+    id="tableModal">
+
+
+    <div class="modal-content">
+
+
+        <div class="modal-header">
+
+
+            <h2 id="modalTitle">
+
+                Thêm bàn
+
+            </h2>
+
+
+            <button
+
+                id="closeModal"
+
+                class="close-btn">
+
+
+                <i class="fa-solid fa-xmark"></i>
+
+
+            </button>
+
+
+        </div>
+
+
+        <form
+
+            id="tableForm">
+
+
+            <input
+
+                type="hidden"
+
+                id="tableIndex">
+
+
+            <div class="form-group">
+
+
+                <label for="tableName">
+
+                    Tên bàn
+
+                </label>
+
+
+                <input
+
+                    type="text"
+
+                    id="tableName"
+
+                    placeholder="Ví dụ: Bàn B01"
+
+                    required>
+
+
+            </div>
+
+
+            <div class="form-group">
+
+
+                <label for="capacity">
+
+                    Sức chứa
+
+                </label>
+
+
+                <input
+
+                    type="number"
+
+                    id="capacity"
+
+                    min="1"
+
+                    max="50"
+
+                    placeholder="Ví dụ: 4"
+
+                    required>
+
+
+            </div>
+
+
+            <div class="form-group">
+
+
+                <label for="area">
+
+                    Khu vực
+
+                </label>
+
+
+                <select
+
+                    id="area">
+
+
+                    <option>
+
+                        Trong nhà
+
+                    </option>
+
+
+                    <option>
+
+                        Ngoài trời
+
+                    </option>
+
+
+                    <option>
+
+                        Tầng 2
+
+                    </option>
+
+
+                </select>
+
+
+            </div>
+
+
+            <div class="form-group">
+
+
+                <label for="status">
+
+                    Trạng thái
+
+                </label>
+
+
+                <select
+
+                    id="status">
+
+
+                    <option value="available">
+
+                        Còn trống
+
+                    </option>
+
+
+                    <option value="occupied">
+
+                        Đang sử dụng
+
+                    </option>
+
+
+                    <option value="maintenance">
+
+                        Bảo trì
+
+                    </option>
+
+
+                </select>
+
+
+            </div>
+
+
+            <div class="modal-footer">
+
+
+                <button
+
+                    type="button"
+
+                    class="btn-cancel"
+
+                    id="cancelBtn">
+
+
+                    Hủy
+
+
+                </button>
+
+
+                <button
+
+                    type="submit"
+
+                    class="btn-primary">
+
+
+                    <i class="fa-solid fa-save"></i>
+
+
+                    Lưu
+
+
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+</div>
+
+
 <script src="../js/ban.js"></script>
 
+
 </body>
+
 </html>
