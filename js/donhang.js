@@ -1,266 +1,1521 @@
-const defaultOrders = [
-    { id: 1, code: '#DH001', customer: 'Nguyễn Văn A', table: 'B01', staff: 'Lan', total: 320000, date: '2025-03-18', status: 'Đã thanh toán' },
-    { id: 2, code: '#DH002', customer: 'Trần Văn B', table: 'B03', staff: 'Hùng', total: 210000, date: '2025-03-19', status: 'Đang phục vụ' },
-    { id: 3, code: '#DH003', customer: 'Lê Văn C', table: 'Mang về', staff: 'Mai', total: 95000, date: '2025-03-20', status: 'Chờ thanh toán' }
+const products = {
+
+    "Cà Phê Đen": 25000,
+
+    "Cà Phê Sữa": 35000,
+
+    "Trà Đào": 45000,
+
+    "Trà Xoài": 40000,
+
+    "Trà Nhãn": 40000,
+
+    "Trà Đào Cam Sả": 35000,
+
+    "Trà Ô Long Vải": 50000,
+
+    "Sữa Dừa Non Hạt Sen": 60000,
+
+    "Trà Dâu": 45000
+
+};
+
+
+let orders = [
+
+    {
+
+        id: "DH001",
+
+        customer: "Nguyễn Văn A",
+
+        table: "B01",
+
+        staff: "Lan",
+
+        date: "2025-03-18",
+
+        status: "Đã thanh toán",
+
+        products: [
+
+            {
+
+                name: "Cà Phê Sữa",
+
+                quantity: 2,
+
+                price: 35000
+
+            },
+
+            {
+
+                name: "Trà Đào",
+
+                quantity: 1,
+
+                price: 45000
+
+            },
+
+            {
+
+                name: "Cà Phê Đen",
+
+                quantity: 1,
+
+                price: 25000
+
+            }
+
+        ]
+
+    },
+
+
+    {
+
+        id: "DH002",
+
+        customer: "Trần Văn B",
+
+        table: "B03",
+
+        staff: "Hùng",
+
+        date: "2025-03-19",
+
+        status: "Đang phục vụ",
+
+        products: [
+
+            {
+
+                name: "Sữa Dừa Non Hạt Sen",
+
+                quantity: 2,
+
+                price: 60000
+
+            },
+
+            {
+
+                name: "Trà Xoài",
+
+                quantity: 1,
+
+                price: 40000
+
+            },
+
+            {
+
+                name: "Trà Đào",
+
+                quantity: 2,
+
+                price: 45000
+
+            }
+
+        ]
+
+    },
+
+
+    {
+
+        id: "DH003",
+
+        customer: "Lê Văn C",
+
+        table: "Mang về",
+
+        staff: "Mai",
+
+        date: "2025-03-20",
+
+        status: "Chờ thanh toán",
+
+        products: [
+
+            {
+
+                name: "Cà Phê Đen",
+
+                quantity: 2,
+
+                price: 25000
+
+            },
+
+            {
+
+                name: "Trà Dâu",
+
+                quantity: 1,
+
+                price: 45000
+
+            }
+
+        ]
+
+    }
+
 ];
 
-const orderStorageKey = 'orderList';
-let orders = [];
-let currentOrderId = null;
 
-let orderTableBody;
-let orderSearch;
-let orderSearchButton;
-let orderStatusFilter;
-let orderDateFilter;
-let orderFilterButton;
-let orderResetButton;
-let orderModal;
-let openOrderModal;
-let closeOrderModal;
-let cancelOrderModal;
-let orderForm;
-let orderModalTitle;
-let orderCustomer;
-let orderTable;
-let orderStaff;
-let orderTotal;
-let orderDate;
-let orderStatus;
-let totalOrdersCount;
-let totalRevenue;
-let activeOrdersCount;
+let editingOrderId = null;
 
-function setupOrderElements() {
-    orderTableBody = document.getElementById('orderTableBody');
-    orderSearch = document.getElementById('orderSearch');
-    orderSearchButton = document.getElementById('orderSearchButton');
-    orderStatusFilter = document.getElementById('orderStatusFilter');
-    orderDateFilter = document.getElementById('orderDateFilter');
-    orderFilterButton = document.getElementById('orderFilterButton');
-    orderResetButton = document.getElementById('orderResetButton');
-    orderModal = document.getElementById('orderModal');
-    openOrderModal = document.getElementById('openOrderModal');
-    closeOrderModal = document.getElementById('closeOrderModal');
-    cancelOrderModal = document.getElementById('cancelOrderModal');
-    orderForm = document.getElementById('orderForm');
-    orderModalTitle = document.getElementById('orderModalTitle');
-    orderCustomer = document.getElementById('orderCustomer');
-    orderTable = document.getElementById('orderTable');
-    orderStaff = document.getElementById('orderStaff');
-    orderTotal = document.getElementById('orderTotal');
-    orderDate = document.getElementById('orderDate');
-    orderStatus = document.getElementById('orderStatus');
-    totalOrdersCount = document.getElementById('totalOrdersCount');
-    totalRevenue = document.getElementById('totalRevenue');
-    activeOrdersCount = document.getElementById('activeOrdersCount');
+
+
+const orderTableBody =
+    document.getElementById("orderTableBody");
+
+
+const totalOrdersCount =
+    document.getElementById("totalOrdersCount");
+
+
+const totalRevenue =
+    document.getElementById("totalRevenue");
+
+
+const activeOrdersCount =
+    document.getElementById("activeOrdersCount");
+
+
+const orderSearch =
+    document.getElementById("orderSearch");
+
+
+const orderStatusFilter =
+    document.getElementById("orderStatusFilter");
+
+
+const orderDateFilter =
+    document.getElementById("orderDateFilter");
+
+
+const orderModal =
+    document.getElementById("orderModal");
+
+
+const detailModal =
+    document.getElementById("detailModal");
+
+
+const orderForm =
+    document.getElementById("orderForm");
+
+
+const orderProducts =
+    document.getElementById("orderProducts");
+
+
+const orderTotal =
+    document.getElementById("orderTotal");
+
+
+const orderModalTitle =
+    document.getElementById("orderModalTitle");
+
+
+
+function formatMoney(number) {
+
+    return number.toLocaleString("vi-VN") + "₫";
+
 }
 
-function loadOrders() {
-    const saved = localStorage.getItem(orderStorageKey);
-    if (saved) {
-        try {
-            orders = JSON.parse(saved);
-            if (!Array.isArray(orders)) throw new Error('Invalid order data');
-        } catch (error) {
-            console.warn('Xóa dữ liệu sai localStorage.orderList và tải lại dữ liệu mẫu:', error);
-            localStorage.removeItem(orderStorageKey);
-            orders = defaultOrders;
-        }
-    } else {
-        orders = defaultOrders;
+
+
+function calculateOrderTotal(order) {
+
+    return order.products.reduce(
+
+        (total, product) => {
+
+            return total + (
+
+                product.price *
+                product.quantity
+
+            );
+
+        },
+
+        0
+
+    );
+
+}
+
+
+function getStatusClass(status) {
+
+
+    if (status === "Đã thanh toán") {
+
+        return "status-paid";
+
     }
-    renderOrders(orders);
+
+
+    if (status === "Đang phục vụ") {
+
+        return "status-serving";
+
+    }
+
+
+    return "status-waiting";
+
 }
 
-function saveOrders() {
-    localStorage.setItem(orderStorageKey, JSON.stringify(orders));
+
+
+function renderProductNames(products) {
+
+
+    const firstProduct =
+        products[0];
+
+
+    const totalProduct =
+        products.length;
+
+
+    if (totalProduct === 1) {
+
+        return `
+
+            <div class="product-list">
+
+                <span class="product-name">
+
+                    ${firstProduct.name}
+
+                </span>
+
+                <span class="product-count">
+
+                    x${firstProduct.quantity}
+
+                </span>
+
+            </div>
+
+        `;
+
+    }
+
+
+    return `
+
+        <div class="product-list">
+
+            <span class="product-name">
+
+                ${firstProduct.name}
+
+            </span>
+
+            <span class="product-count">
+
+                x${firstProduct.quantity}
+
+                và ${totalProduct - 1} sản phẩm khác
+
+            </span>
+
+        </div>
+
+    `;
+
 }
 
-function formatCurrency(value) {
-    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + '₫';
-}
 
-function renderOrders(list) {
+
+function renderOrders(data = orders) {
+
+
     orderTableBody.innerHTML = "";
 
-    list.forEach(order => {
 
-        const statusClass =
-            order.status === "Đã thanh toán"
-                ? "status-success"
-                : order.status === "Đang phục vụ"
-                ? "status-process"
-                : "status-wait";
+    if (data.length === 0) {
 
-        const row = document.createElement("tr");
+        orderTableBody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="9"
+                    style="text-align:center;padding:40px">
+
+                    Không tìm thấy đơn hàng
+
+                </td>
+
+            </tr>
+
+        `;
+
+        updateSummary(data);
+
+        return;
+
+    }
+
+
+    data.forEach(order => {
+
+
+        const total =
+            calculateOrderTotal(order);
+
+
+        const row =
+            document.createElement("tr");
+
 
         row.innerHTML = `
-            <td>${order.code}</td>
-
-            <td>${order.customer}</td>
-
-            <td>${order.table}</td>
-
-            <td>${order.staff}</td>
-
-            <td>${formatCurrency(order.total)}</td>
-
-            <td>${order.date}</td>
 
             <td>
-                <span class="${statusClass}">
-                    ${order.status}
+
+                <span class="order-id">
+
+                    #${order.id}
+
                 </span>
+
             </td>
 
+
             <td>
-                <div class="actions">
+
+                ${order.customer}
+
+            </td>
+
+
+            <td>
+
+                ${renderProductNames(order.products)}
+
+            </td>
+
+
+            <td>
+
+                ${order.table}
+
+            </td>
+
+
+            <td>
+
+                ${order.staff}
+
+            </td>
+
+
+            <td>
+
+                <span class="order-price">
+
+                    ${formatMoney(total)}
+
+                </span>
+
+            </td>
+
+
+            <td>
+
+                ${order.date}
+
+            </td>
+
+
+            <td>
+
+                <span class="status ${getStatusClass(order.status)}">
+
+                    ${order.status}
+
+                </span>
+
+            </td>
+
+
+            <td>
+
+
+                <div class="action-buttons">
+
 
                     <button
+
                         class="action-btn view-btn"
-                        data-action="view"
-                        data-id="${order.id}"
-                        title="Xem / Chỉnh sửa">
+
+                        onclick="viewOrder('${order.id}')">
 
                         <i class="fa-solid fa-eye"></i>
 
                     </button>
 
+
                     <button
+
+                        class="action-btn edit-btn"
+
+                        onclick="editOrder('${order.id}')">
+
+                        <i class="fa-solid fa-pen"></i>
+
+                    </button>
+
+
+                    <button
+
                         class="action-btn delete-btn"
-                        data-action="delete"
-                        data-id="${order.id}"
-                        title="Xóa">
+
+                        onclick="deleteOrder('${order.id}')">
 
                         <i class="fa-solid fa-trash"></i>
 
                     </button>
 
+
                 </div>
+
+
             </td>
+
         `;
 
+
         orderTableBody.appendChild(row);
+
     });
 
-    updateOrderStats(list);
+
+    updateSummary(data);
+
 }
 
-function updateOrderStats(list) {
-    totalOrdersCount.textContent = list.length;
-    totalRevenue.textContent = formatCurrency(list.reduce((sum, item) => sum + Number(item.total), 0));
-    activeOrdersCount.textContent = list.filter(item => item.status === 'Đang phục vụ').length;
+
+function updateSummary(data = orders) {
+
+
+    totalOrdersCount.textContent =
+        data.length;
+
+
+    const revenue =
+        data.reduce(
+
+            (total, order) => {
+
+                return total +
+                    calculateOrderTotal(order);
+
+            },
+
+            0
+
+        );
+
+
+    totalRevenue.textContent =
+        formatMoney(revenue);
+
+
+    const active =
+        data.filter(
+
+            order =>
+
+                order.status === "Đang phục vụ"
+
+        ).length;
+
+
+    activeOrdersCount.textContent =
+        active;
+
 }
 
-function openOrderModalFn(editId = null) {
-    currentOrderId = editId;
-    orderModal.classList.add('active');
-    orderModalTitle.textContent = editId ? 'Sửa đơn hàng' : 'Tạo đơn hàng';
 
-    if (editId) {
-        const order = orders.find(item => item.id === editId);
-        orderCustomer.value = order.customer;
-        orderTable.value = order.table;
-        orderStaff.value = order.staff;
-        orderTotal.value = order.total;
-        orderDate.value = order.date;
-        orderStatus.value = order.status;
-    } else {
+
+document
+    .getElementById("openOrderModal")
+    .addEventListener("click", () => {
+
+
+        editingOrderId = null;
+
+
+        orderModalTitle.textContent =
+            "Tạo đơn hàng";
+
+
         orderForm.reset();
-        orderStatus.value = 'Đã thanh toán';
-        orderDate.value = new Date().toISOString().slice(0, 10);
-    }
+
+
+        orderProducts.innerHTML =
+            createProductRow();
+
+
+        orderTotal.value =
+            "0₫";
+
+
+        orderModal.classList.add("active");
+
+
+        document
+            .getElementById("orderDate")
+            .valueAsDate = new Date();
+
+    });
+
+
+function createProductRow(name = "", quantity = 1) {
+
+
+    return `
+
+        <div class="product-row">
+
+
+            <select
+                class="product-select"
+                required>
+
+
+                <option value="">
+
+                    -- Chọn sản phẩm --
+
+                </option>
+
+
+                ${Object.keys(products)
+
+                    .map(product => `
+
+                        <option
+
+                            value="${product}"
+
+                            data-price="${products[product]}"
+
+                            ${product === name ? "selected" : ""}>
+
+                            ${product} -
+
+                            ${formatMoney(products[product])}
+
+                        </option>
+
+                    `)
+
+                    .join("")}
+
+
+            </select>
+
+
+            <input
+
+                type="number"
+
+                class="product-quantity"
+
+                min="1"
+
+                value="${quantity}"
+
+                required>
+
+
+            <button
+
+                type="button"
+
+                class="remove-product">
+
+                <i class="fa-solid fa-trash"></i>
+
+            </button>
+
+
+        </div>
+
+    `;
+
 }
 
-function closeOrderModalFn() {
-    orderModal.classList.remove('active');
-    orderForm.reset();
-    currentOrderId = null;
+
+document
+    .getElementById("addProductBtn")
+    .addEventListener("click", () => {
+
+
+        orderProducts.insertAdjacentHTML(
+
+            "beforeend",
+
+            createProductRow()
+
+        );
+
+    });
+
+
+orderProducts.addEventListener(
+
+    "change",
+
+    calculateFormTotal
+
+);
+
+
+orderProducts.addEventListener(
+
+    "input",
+
+    calculateFormTotal
+
+);
+
+
+function calculateFormTotal() {
+
+
+    let total = 0;
+
+
+    const rows =
+        document.querySelectorAll(".product-row");
+
+
+    rows.forEach(row => {
+
+
+        const select =
+            row.querySelector(".product-select");
+
+
+        const quantity =
+            row.querySelector(".product-quantity");
+
+
+        const price =
+            Number(
+
+                select
+                    .selectedOptions[0]
+                    ?.dataset.price || 0
+
+            );
+
+
+        const quantityValue =
+            Number(quantity.value) || 0;
+
+
+        total +=
+            price * quantityValue;
+
+    });
+
+
+    orderTotal.value =
+        formatMoney(total);
+
 }
 
-function handleOrderFormSubmit(event) {
-    event.preventDefault();
-    const customer = orderCustomer.value.trim();
-    const table = orderTable.value.trim();
-    const staff = orderStaff.value.trim();
-    const total = Number(orderTotal.value);
-    const date = orderDate.value;
-    const status = orderStatus.value;
 
-    if (!customer || !table || !staff || !date || isNaN(total)) {
-        alert('Vui lòng nhập đủ thông tin đơn hàng.');
-        return;
+orderProducts.addEventListener(
+
+    "click",
+
+    event => {
+
+
+        const button =
+            event.target.closest(".remove-product");
+
+
+        if (!button) return;
+
+
+        const rows =
+            document.querySelectorAll(".product-row");
+
+
+        if (rows.length === 1) {
+
+            alert(
+
+                "Đơn hàng phải có ít nhất một sản phẩm!"
+
+            );
+
+            return;
+
+        }
+
+
+        button
+            .closest(".product-row")
+            .remove();
+
+
+        calculateFormTotal();
+
     }
 
-    if (currentOrderId) {
-        const index = orders.findIndex(item => item.id === currentOrderId);
-        orders[index] = { id: currentOrderId, code: orders[index].code, customer, table, staff, total, date, status };
-    } else {
-        const nextId = orders.reduce((max, item) => Math.max(max, item.id), 0) + 1;
-        const code = `#DH${String(nextId).padStart(3, '0')}`;
-        orders.push({ id: nextId, code, customer, table, staff, total, date, status });
+);
+
+
+
+orderForm.addEventListener(
+
+    "submit",
+
+    event => {
+
+
+        event.preventDefault();
+
+
+        const customer =
+            document
+                .getElementById("orderCustomer")
+                .value.trim();
+
+
+        const table =
+            document
+                .getElementById("orderTable")
+                .value.trim();
+
+
+        const staff =
+            document
+                .getElementById("orderStaff")
+                .value.trim();
+
+
+        const date =
+            document
+                .getElementById("orderDate")
+                .value;
+
+
+        const status =
+            document
+                .getElementById("orderStatus")
+                .value;
+
+
+        const productRows =
+            document.querySelectorAll(".product-row");
+
+
+        const selectedProducts = [];
+
+
+        productRows.forEach(row => {
+
+
+            const select =
+                row.querySelector(".product-select");
+
+
+            const quantity =
+                row.querySelector(".product-quantity");
+
+
+            const productName =
+                select.value;
+
+
+            const quantityValue =
+                Number(quantity.value);
+
+
+            if (productName) {
+
+
+                selectedProducts.push({
+
+                    name: productName,
+
+                    quantity: quantityValue,
+
+                    price: products[productName]
+
+                });
+
+            }
+
+        });
+
+
+        if (selectedProducts.length === 0) {
+
+            alert(
+
+                "Vui lòng chọn ít nhất một sản phẩm!"
+
+            );
+
+            return;
+
+        }
+
+
+        if (editingOrderId) {
+
+
+            const order =
+                orders.find(
+
+                    order =>
+
+                        order.id === editingOrderId
+
+                );
+
+
+            order.customer =
+                customer;
+
+
+            order.table =
+                table;
+
+
+            order.staff =
+                staff;
+
+
+            order.date =
+                date;
+
+
+            order.status =
+                status;
+
+
+            order.products =
+                selectedProducts;
+
+
+            alert(
+
+                "Cập nhật đơn hàng thành công!"
+
+            );
+
+
+        } else {
+
+
+            const newId =
+
+                "DH" +
+
+                String(
+
+                    orders.length + 1
+
+                ).padStart(3, "0");
+
+
+            orders.push({
+
+                id: newId,
+
+                customer,
+
+                table,
+
+                staff,
+
+                date,
+
+                status,
+
+                products: selectedProducts
+
+            });
+
+
+            alert(
+
+                "Tạo đơn hàng thành công!"
+
+            );
+
+        }
+
+
+        renderOrders();
+
+
+        closeOrderModal();
+
     }
 
-    saveOrders();
-    renderOrders(filterOrders());
-    closeOrderModalFn();
+);
+
+
+
+function editOrder(id) {
+
+
+    const order =
+        orders.find(
+
+            order =>
+
+                order.id === id
+
+        );
+
+
+    if (!order) return;
+
+
+    editingOrderId =
+        id;
+
+
+    orderModalTitle.textContent =
+        "Sửa đơn hàng";
+
+
+    document
+        .getElementById("orderCustomer")
+        .value =
+        order.customer;
+
+
+    document
+        .getElementById("orderTable")
+        .value =
+        order.table;
+
+
+    document
+        .getElementById("orderStaff")
+        .value =
+        order.staff;
+
+
+    document
+        .getElementById("orderDate")
+        .value =
+        order.date;
+
+
+    document
+        .getElementById("orderStatus")
+        .value =
+        order.status;
+
+
+    orderProducts.innerHTML = "";
+
+
+    order.products.forEach(product => {
+
+
+        orderProducts.insertAdjacentHTML(
+
+            "beforeend",
+
+            createProductRow(
+
+                product.name,
+
+                product.quantity
+
+            )
+
+        );
+
+    });
+
+
+    calculateFormTotal();
+
+
+    orderModal.classList.add("active");
+
 }
+
+
+
+function deleteOrder(id) {
+
+
+    const order =
+        orders.find(
+
+            order =>
+
+                order.id === id
+
+        );
+
+
+    if (!order) return;
+
+
+    const confirmDelete =
+        confirm(
+
+            `Bạn có chắc muốn xóa đơn hàng #${id}?`
+
+        );
+
+
+    if (!confirmDelete) return;
+
+
+    orders =
+        orders.filter(
+
+            order =>
+
+                order.id !== id
+
+        );
+
+
+    renderOrders();
+
+
+    alert(
+
+        "Đã xóa đơn hàng!"
+
+    );
+
+}
+
+
+function viewOrder(id) {
+
+
+    const order =
+        orders.find(
+
+            order =>
+
+                order.id === id
+
+        );
+
+
+    if (!order) return;
+
+
+    const total =
+        calculateOrderTotal(order);
+
+
+    const productHTML =
+        order.products
+
+            .map(product => `
+
+                <div class="detail-product">
+
+
+                    <span>
+
+                        ${product.name}
+
+                        x${product.quantity}
+
+                    </span>
+
+
+                    <strong>
+
+                        ${formatMoney(
+
+                            product.price *
+
+                            product.quantity
+
+                        )}
+
+                    </strong>
+
+
+                </div>
+
+            `)
+
+            .join("");
+
+
+    document
+        .getElementById("orderDetailContent")
+        .innerHTML = `
+
+
+        <div class="detail-info">
+
+
+            <div class="detail-box">
+
+                <span>Mã đơn hàng</span>
+
+                <strong>#${order.id}</strong>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <span>Khách hàng</span>
+
+                <strong>${order.customer}</strong>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <span>Bàn</span>
+
+                <strong>${order.table}</strong>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <span>Nhân viên</span>
+
+                <strong>${order.staff}</strong>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <span>Ngày</span>
+
+                <strong>${order.date}</strong>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <span>Trạng thái</span>
+
+                <strong>${order.status}</strong>
+
+            </div>
+
+
+        </div>
+
+
+        <h3>
+
+            Danh sách sản phẩm
+
+        </h3>
+
+
+        <div class="detail-products">
+
+            ${productHTML}
+
+        </div>
+
+
+        <div class="detail-total">
+
+            <span>Tổng tiền</span>
+
+            <strong>${formatMoney(total)}</strong>
+
+        </div>
+
+    `;
+
+
+    detailModal.classList.add("active");
+
+}
+
+
+function closeOrderModal() {
+
+    orderModal.classList.remove("active");
+
+}
+
+
+document
+    .getElementById("closeOrderModal")
+    .addEventListener(
+
+        "click",
+
+        closeOrderModal
+
+    );
+
+
+document
+    .getElementById("cancelOrderModal")
+    .addEventListener(
+
+        "click",
+
+        closeOrderModal
+
+    );
+
+
+document
+    .getElementById("closeDetailModal")
+    .addEventListener(
+
+        "click",
+
+        () => {
+
+            detailModal.classList.remove(
+
+                "active"
+
+            );
+
+        }
+
+    );
+
+
 
 function filterOrders() {
-    const query = orderSearch.value.trim().toLowerCase();
-    const status = orderStatusFilter.value;
-    const date = orderDateFilter.value;
 
-    return orders.filter(order => {
-        const matchesQuery = order.code.toLowerCase().includes(query) || order.customer.toLowerCase().includes(query);
-        const matchesStatus = status ? order.status === status : true;
-        const matchesDate = date ? order.date === date : true;
-        return matchesQuery && matchesStatus && matchesDate;
-    });
+
+    const keyword =
+        orderSearch.value
+
+            .toLowerCase()
+
+            .trim();
+
+
+    const status =
+        orderStatusFilter.value;
+
+
+    const date =
+        orderDateFilter.value;
+
+
+    const result =
+        orders.filter(order => {
+
+
+            const productMatch =
+
+                order.products
+
+                    .some(
+
+                        product =>
+
+                            product.name
+
+                                .toLowerCase()
+
+                                .includes(keyword)
+
+                    );
+
+
+            const keywordMatch =
+
+
+                order.id
+
+                    .toLowerCase()
+
+                    .includes(keyword)
+
+
+                ||
+
+
+                order.customer
+
+                    .toLowerCase()
+
+                    .includes(keyword)
+
+
+                ||
+
+
+                productMatch;
+
+
+            const statusMatch =
+
+                !status ||
+
+                order.status === status;
+
+
+            const dateMatch =
+
+                !date ||
+
+                order.date === date;
+
+
+            return (
+
+                keywordMatch &&
+
+                statusMatch &&
+
+                dateMatch
+
+            );
+
+        });
+
+
+    renderOrders(result);
+
 }
 
-function handleOrderAction(event) {
-    const button = event.target.closest('button');
-    if (!button) return;
-    const action = button.dataset.action;
-    const id = Number(button.dataset.id);
 
-    if (action === 'view') {
-        openOrderModalFn(id);
-    } else if (action === 'delete') {
-        if (confirm('Bạn có chắc muốn xóa đơn hàng này không?')) {
-            orders = orders.filter(item => item.id !== id);
-            saveOrders();
-            renderOrders(filterOrders());
+document
+
+    .getElementById("orderSearchButton")
+
+    .addEventListener(
+
+        "click",
+
+        filterOrders
+
+    );
+
+
+orderSearch
+
+    .addEventListener(
+
+        "input",
+
+        filterOrders
+
+    );
+
+
+document
+
+    .getElementById("orderFilterButton")
+
+    .addEventListener(
+
+        "click",
+
+        filterOrders
+
+    );
+
+
+
+document
+
+    .getElementById("orderResetButton")
+
+    .addEventListener(
+
+        "click",
+
+        () => {
+
+
+            orderSearch.value =
+                "";
+
+
+            orderStatusFilter.value =
+                "";
+
+
+            orderDateFilter.value =
+                "";
+
+
+            renderOrders();
+
         }
+
+    );
+
+
+window.addEventListener(
+
+    "click",
+
+    event => {
+
+
+        if (
+
+            event.target === orderModal
+
+        ) {
+
+            closeOrderModal();
+
+        }
+
+
+        if (
+
+            event.target === detailModal
+
+        ) {
+
+            detailModal.classList.remove(
+
+                "active"
+
+            );
+
+        }
+
     }
-}
 
-function resetOrderFilters() {
-    orderSearch.value = '';
-    orderStatusFilter.value = '';
-    orderDateFilter.value = '';
-    renderOrders(orders);
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-    setupOrderElements();
-
-    openOrderModal.addEventListener('click', () => openOrderModalFn());
-    closeOrderModal.addEventListener('click', closeOrderModalFn);
-    cancelOrderModal.addEventListener('click', closeOrderModalFn);
-    orderForm.addEventListener('submit', handleOrderFormSubmit);
-    orderSearch.addEventListener('input', () => renderOrders(filterOrders()));
-    orderSearchButton.addEventListener('click', () => renderOrders(filterOrders()));
-    orderStatusFilter.addEventListener('change', () => renderOrders(filterOrders()));
-    orderDateFilter.addEventListener('change', () => renderOrders(filterOrders()));
-    orderFilterButton.addEventListener('click', () => renderOrders(filterOrders()));
-    orderResetButton.addEventListener('click', resetOrderFilters);
-    orderTableBody.addEventListener('click', handleOrderAction);
-    orderModal.addEventListener('click', event => {
-        if (event.target === orderModal) closeOrderModalFn();
-    });
-
-    loadOrders();
-});
+);
+renderOrders();
